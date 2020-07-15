@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, goder">
+    <meta name="keywords" content="排序, goder">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | goder</title>
+    <title>排序 | goder</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">排序</h1>
                 </div>
             </div>
         </div>
@@ -406,9 +406,17 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%8E%92%E5%BA%8F/">
+                                <span class="chip bg-color">排序</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                <span class="chip bg-color">算法</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -420,7 +428,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-04
+                    2020-07-15
                 </div>
                 
 
@@ -436,15 +444,130 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+                <h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>思想：将数组分为已排序和未排序两部分，每次从未排序部分选出最小的数放入已排序部分</p>
+<h4 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h4><p><img src="../img/2059345-20200607164933854-1279339529.gif" alt=""></p>
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ol>
+<li>记上待排序部分的第一个数字的索引min</li>
+<li>对待排序部分遍历，如果有比第nums[min]小的，将索引值赋min</li>
+<li>将待排序部分首元素与nums[min]交换</li>
+<li>重复3和4</li>
+</ol>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>func SelectSort(nums []int,cur int){
+    if cur&gt;=len(nums){
+        return
+    }
+    var min int=cur
+    for i :=cur+1;i&lt;len(nums);i++  {
+        if nums[i]&lt;nums[min]{
+            min=i
+        }
+    }
+    nums[cur],nums[min]=nums[min],nums[cur]
+    cur++
+    SelectSort(nums,cur)
+}</code></pre><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>思想：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序</p>
+<h4 id="图解-1"><a href="#图解-1" class="headerlink" title="图解"></a>图解</h4><p><img src="../img/7789414-fb94ab5405281f89.png" alt=""></p>
+<h4 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h4><ol>
+<li>选择一个基准值，为了方便选择待排序部分首元素,用l表示左指针，r表示右指针</li>
+<li>遍历待排序部分，对右指针向前移动，直到有小于基准值的元素出现，将r所指的值赋予l所指的元素,l小于r</li>
+<li>对左指针进行移动，直到有大于基准值的元素出现，l所指的值赋予r所指的元素,l小于r</li>
+<li>当l和r相等时，就将基准值赋予该元素，基准值将数组分为左右两部分，对这两部分进行2到4的操作</li>
+</ol>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><pre><code>func QuickSort(nums []int,l int,r int){
+    //对左右下标进行比较，l小于r时就返回，防止程序出错
+    if l&gt;r{
+        return
+    }
+    //pviot为基准值
+    var pviot int=nums[l]
+    //保存函数中传入的l原值
+    var left int=l
+    //保存函数中传入的r原值
+    var right int=r
+    //循环排序
+    for l&lt;r{
+        //基准值选了待排序部分最左边，所以从r开始
+        //如果右边得值大于基准值，不用与左边交换，只需r减小，直到右边的值小于基准值
+        for pviot&lt;=nums[r]&amp;&amp;l&lt;r{
+            r--
+        }
+        //此时右边所指的数小于左边，需要将右边得值赋给左边
+        if r&gt;l{
+            nums[l]=nums[r]
+        }
+        for pviot&gt;=nums[l]&amp;&amp;l&lt;r{
+            l++
+        }
+        if r&gt;l{
+            nums[r]=nums[l]
+        }
+    }
+    //此时l和r指向同一个数字，把基准值放在此处
+    nums[l]=pviot
+    //对基准值左边进行快速排序
+    QuickSort(nums,left,l-1)
+    //对基准值右边进行快速排序
+    QuickSort(nums,r+1,right)
+    return
+}</code></pre><h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>思想：归并排序，是创建在归并操作上的一种有效的排序算法。算法是采用分治法的一个非常典型的应用，且各层分治递归可以同时进行。</p>
+<ul>
+<li>分解（Divide）： 将n个元素分成个含n/2个元素的子序列。</li>
+<li>解决（Conquer）：用合并排序法对两个子序列递归的排序。</li>
+<li>合并（Combine）：合并两个已排序的子序列已得到排序结果。</li>
+</ul>
+<h4 id="图解-2"><a href="#图解-2" class="headerlink" title="图解"></a>图解</h4><p><img src="../img/7789414-b410a7c0fea50eba.png" alt=""></p>
+<h4 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h4><ol>
+<li>对待排序部分分为左右两部分</li>
+<li>对左边部分递归进行归并排序</li>
+<li>对右边部分递归进行归并排序</li>
+<li>对这两部分进行合并</li>
+</ol>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><pre><code>func MergeSort(nums []int,l int,r int){
+    if l&gt;=r{
+        return
+    }
+    var middle int=(l+r)/2
+    MergeSort(nums,l,middle)
+    MergeSort(nums,middle+1,r)
+    merge(nums,l,r,middle)
+}
+
+func merge(nums []int,l int,r int,middle int){
+    var temp []int=make([]int, r-l+1)
+    var i int=0
+    var j int=l
+    var k int=middle+1
+    for j&lt;=middle&amp;&amp;k&lt;=r{
+        if nums[j] &lt;= nums[k]{
+            temp[i]=nums[j]
+            j++
+            i++
+        }else{
+            temp[i]=nums[k]
+            k++
+            i++
+        }
+    }
+    for j&lt;=middle{
+        temp[i]=nums[j]
+        j++
+        i++
+    }
+    for k&lt;=r{
+        temp[i]=nums[k]
+        k++
+        i++
+    }
+    for i=0;i&lt;len(temp);i++{
+        nums[l+i]=temp[i]
+    }
+}</code></pre><h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><p>思想：工作的原理是将数组分到有限数量的桶子里。每个桶子再个别排序，有可能再使用别的排序算法或是以递归方式继续使用桶排序</p>
+<h4 id="步骤-3"><a href="#步骤-3" class="headerlink" title="步骤"></a>步骤</h4><ul>
+<li>设置一个定量的数组当作空桶；</li>
+<li>遍历输入数据，并且把数据一个一个放到对应的桶里面去；</li>
+<li>对每个不是空的桶进行排序。</li>
+<li>从不是空的桶里面把排序好的数据进行拼接；</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -488,7 +611,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dylanddyf.github.io/2020/07/04/hello-world/">https://dylanddyf.github.io/2020/07/04/hello-world/</a>
+                    <a href="https://dylanddyf.github.io/2020/07/15/sort/">https://dylanddyf.github.io/2020/07/15/sort/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -525,7 +648,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E6%8E%92%E5%BA%8F/">
+                                    <span class="chip bg-color">排序</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">算法</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -691,9 +822,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/07/15/sort/">
                     <div class="card-image">
@@ -716,9 +848,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -727,6 +859,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -746,7 +879,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2020/07/04/hello-world/">
@@ -776,7 +909,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
