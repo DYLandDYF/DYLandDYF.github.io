@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="排序, goder">
+    <meta name="keywords" content="树, goder">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>排序 | goder</title>
+    <title>树 | goder</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">排序</h1>
+                    <h1 class="description center-align post-title">树</h1>
                 </div>
             </div>
         </div>
@@ -408,12 +408,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%8E%92%E5%BA%8F/">
-                                <span class="chip bg-color">排序</span>
-                            </a>
-                        
                             <a href="/tags/%E7%AE%97%E6%B3%95/">
                                 <span class="chip bg-color">算法</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%A0%91/">
+                                <span class="chip bg-color">树</span>
+                            </a>
+                        
+                            <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+                                <span class="chip bg-color">二叉树</span>
                             </a>
                         
                     </div>
@@ -428,7 +432,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-15
+                    2020-07-16
                 </div>
                 
 
@@ -444,130 +448,45 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>思想：将数组分为已排序和未排序两部分，每次从未排序部分选出最小的数放入已排序部分</p>
-<h4 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h4><p><img src="../img/2059345-20200607164933854-1279339529.gif" alt=""></p>
-<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ol>
-<li>记上待排序部分的第一个数字的索引min</li>
-<li>对待排序部分遍历，如果有比第nums[min]小的，将索引值赋min</li>
-<li>将待排序部分首元素与nums[min]交换</li>
-<li>重复3和4</li>
-</ol>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>func SelectSort(nums []int,cur int){
-    if cur&gt;=len(nums){
-        return
-    }
-    var min int=cur
-    for i :=cur+1;i&lt;len(nums);i++  {
-        if nums[i]&lt;nums[min]{
-            min=i
-        }
-    }
-    nums[cur],nums[min]=nums[min],nums[cur]
-    cur++
-    SelectSort(nums,cur)
-}</code></pre><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>思想：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序</p>
-<h4 id="图解-1"><a href="#图解-1" class="headerlink" title="图解"></a>图解</h4><p><img src="../img/7789414-fb94ab5405281f89.png" alt=""></p>
-<h4 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h4><ol>
-<li>选择一个基准值，为了方便选择待排序部分首元素,用l表示左指针，r表示右指针</li>
-<li>遍历待排序部分，对右指针向前移动，直到有小于基准值的元素出现，将r所指的值赋予l所指的元素,l小于r</li>
-<li>对左指针进行移动，直到有大于基准值的元素出现，l所指的值赋予r所指的元素,l小于r</li>
-<li>当l和r相等时，就将基准值赋予该元素，基准值将数组分为左右两部分，对这两部分进行2到4的操作</li>
-</ol>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><pre><code>func QuickSort(nums []int,l int,r int){
-    //对左右下标进行比较，l小于r时就返回，防止程序出错
-    if l&gt;r{
-        return
-    }
-    //pviot为基准值
-    var pviot int=nums[l]
-    //保存函数中传入的l原值
-    var left int=l
-    //保存函数中传入的r原值
-    var right int=r
-    //循环排序
-    for l&lt;r{
-        //基准值选了待排序部分最左边，所以从r开始
-        //如果右边得值大于基准值，不用与左边交换，只需r减小，直到右边的值小于基准值
-        for pviot&lt;=nums[r]&amp;&amp;l&lt;r{
-            r--
-        }
-        //此时右边所指的数小于左边，需要将右边得值赋给左边
-        if r&gt;l{
-            nums[l]=nums[r]
-        }
-        for pviot&gt;=nums[l]&amp;&amp;l&lt;r{
-            l++
-        }
-        if r&gt;l{
-            nums[r]=nums[l]
-        }
-    }
-    //此时l和r指向同一个数字，把基准值放在此处
-    nums[l]=pviot
-    //对基准值左边进行快速排序
-    QuickSort(nums,left,l-1)
-    //对基准值右边进行快速排序
-    QuickSort(nums,r+1,right)
-    return
-}</code></pre><h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>思想：归并排序，是创建在归并操作上的一种有效的排序算法。算法是采用分治法的一个非常典型的应用，且各层分治递归可以同时进行。</p>
-<ul>
-<li>分解（Divide）： 将n个元素分成个含n/2个元素的子序列。</li>
-<li>解决（Conquer）：用合并排序法对两个子序列递归的排序。</li>
-<li>合并（Combine）：合并两个已排序的子序列已得到排序结果。</li>
+                <h4 id="树的介绍"><a href="#树的介绍" class="headerlink" title="树的介绍"></a>树的介绍</h4><p>树是节点按分支关系组成的一种结构，具有插入和删除效率高的优点，但是查找效率较低，二叉树不是树的特例（即二叉树不是树）</p>
+<h4 id="常见二叉树分类"><a href="#常见二叉树分类" class="headerlink" title="常见二叉树分类"></a>常见二叉树分类</h4><ul>
+<li>普通二叉树</li>
+<li>完全二叉树</li>
+<li>满二叉树</li>
+<li>线索二叉树</li>
+<li>哈夫曼树</li>
+<li>二叉排序树</li>
+<li>平衡二叉树（AVL）</li>
+<li>红黑树</li>
 </ul>
-<h4 id="图解-2"><a href="#图解-2" class="headerlink" title="图解"></a>图解</h4><p><img src="../img/7789414-b410a7c0fea50eba.png" alt=""></p>
-<h4 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h4><ol>
-<li>对待排序部分分为左右两部分</li>
-<li>对左边部分递归进行归并排序</li>
-<li>对右边部分递归进行归并排序</li>
-<li>对这两部分进行合并</li>
+<h4 id="二叉链表"><a href="#二叉链表" class="headerlink" title="二叉链表"></a>二叉链表</h4><p>二叉树的存储结构可以用顺序存储和链式存储来存储。二叉树的顺序存储结构由一组连续的存储单元依次从上到下，从左到右存储完全二叉树的结点元素。对于一般二叉树，应将其与完全二叉树对应，然后给每个结点从1到i编上号，依次存储在大小为i-1的数组中。这种方法只适用于完全二叉树，对非完全二叉树会浪费较多空间，最坏情况一个深度为k的二叉树只有k个结点，却需要长度为2的k次方减一长度的一位数组。事实上，二叉树一般使用链式存储结构，由二叉树的定义可知，二叉树的结点由一个数据元素和分别指向其左右孩子的指针构成，即二叉树的链表结点中包含3个域，这种结点结构的二叉树存储结构称之为二叉链表。</p>
+<h5 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h5><p><img src="../img/BTree.jpg" alt=""></p>
+<h4 id="完全二叉树"><a href="#完全二叉树" class="headerlink" title="完全二叉树"></a>完全二叉树</h4><p>定义：若设二叉树的深度为k，除第 k 层外，其它各层 (1～k-1) 的结点数都达到最大个数，第k 层所有的结点都连续集中在最左边，这就是完全二叉树。</p>
+<h5 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h5><p><img src="../img/CompleteBinaryTree.jpg" alt=""></p>
+<h4 id="满二叉树"><a href="#满二叉树" class="headerlink" title="满二叉树"></a>满二叉树</h4><p>定义：一棵二叉树的结点要么是叶子结点，要么它有两个子结点（如果一个二叉树的层数为K，且结点总数是(2^k) -1，则它就是满二叉树。）</p>
+<h5 id="图示-2"><a href="#图示-2" class="headerlink" title="图示"></a>图示</h5><p><img src="../img/FullBinaryTree.jpg.jpg" alt=""></p>
+<h4 id="线索二叉树"><a href="#线索二叉树" class="headerlink" title="线索二叉树"></a>线索二叉树</h4><p>定义：对于n个结点的二叉树，在二叉链存储结构中有n+1个空链域，利用这些空链域存放在某种遍历次序下该结点的前驱结点和后继结点的指针，这些指针称为线索，加上线索的二叉树称为线索二叉树</p>
+<h5 id="图示-3"><a href="#图示-3" class="headerlink" title="图示"></a>图示</h5><p><img src="../img/ThreadedBinaryTree.jpg" alt=""></p>
+<h4 id="哈夫曼树"><a href="#哈夫曼树" class="headerlink" title="哈夫曼树"></a>哈夫曼树</h4><p>哈夫曼树（Huffman Tree）是在叶子结点和权重确定的情况下，带权路径长度最小的二叉树，也被称为最优二叉树。</p>
+<h5 id=""><a href="#" class="headerlink" title=""></a></h5><p> <img src="../img/HuffmanTree.jpg" alt=""><br> <img src="../img/HuffmanTree2.jpg" alt=""></p>
+<h4 id="二叉排序树（二叉搜索树、二叉查找树）"><a href="#二叉排序树（二叉搜索树、二叉查找树）" class="headerlink" title="二叉排序树（二叉搜索树、二叉查找树）"></a>二叉排序树（二叉搜索树、二叉查找树）</h4><p>定义：根节点的值大于其左子树中任意一个节点的值，小于其右节点中任意一节点的值，这一规则适用于二叉查找树中的每一个节点。</p>
+<h5 id="图示-4"><a href="#图示-4" class="headerlink" title="图示"></a>图示</h5><p><img src="../img/BinarySortTree.jpg" alt=""></p>
+<h4 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h4><p>定义:可以是空树。假如不是空树，任何一个结点的左子树与右子树都是平衡二叉树，并且高度之差的绝对值不超过</p>
+<h5 id="图示-5"><a href="#图示-5" class="headerlink" title="图示"></a>图示</h5><p><img src="../img/BalanceTree.jpg" alt=""></p>
+<h4 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h4><p>定义：红黑树就是一种平衡的二叉查找树，说他平衡的意思是他不会变成“瘸子”，左腿特别长或者右腿特别长。除了符合二叉查找树的特性之外，还具体下列的特性：</p>
+<ol>
+<li><p>节点是红色或者黑色</p>
+</li>
+<li><p>根节点是黑色</p>
+</li>
+<li><p>每个叶子的节点都是黑色的空节点（NULL）</p>
+</li>
+<li><p>每个红色节点的两个子节点都是黑色的。</p>
+</li>
+<li><p>从任意节点到其每个叶子的所有路径都包含相同的黑色节点。</p>
+</li>
 </ol>
-<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><pre><code>func MergeSort(nums []int,l int,r int){
-    if l&gt;=r{
-        return
-    }
-    var middle int=(l+r)/2
-    MergeSort(nums,l,middle)
-    MergeSort(nums,middle+1,r)
-    merge(nums,l,r,middle)
-}
-
-func merge(nums []int,l int,r int,middle int){
-    var temp []int=make([]int, r-l+1)
-    var i int=0
-    var j int=l
-    var k int=middle+1
-    for j&lt;=middle&amp;&amp;k&lt;=r{
-        if nums[j] &lt;= nums[k]{
-            temp[i]=nums[j]
-            j++
-            i++
-        }else{
-            temp[i]=nums[k]
-            k++
-            i++
-        }
-    }
-    for j&lt;=middle{
-        temp[i]=nums[j]
-        j++
-        i++
-    }
-    for k&lt;=r{
-        temp[i]=nums[k]
-        k++
-        i++
-    }
-    for i=0;i&lt;len(temp);i++{
-        nums[l+i]=temp[i]
-    }
-}</code></pre><h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><p>思想：工作的原理是将数组分到有限数量的桶子里。每个桶子再个别排序，有可能再使用别的排序算法或是以递归方式继续使用桶排序</p>
-<h4 id="步骤-3"><a href="#步骤-3" class="headerlink" title="步骤"></a>步骤</h4><ul>
-<li>设置一个定量的数组当作空桶；</li>
-<li>遍历输入数据，并且把数据一个一个放到对应的桶里面去；</li>
-<li>对每个不是空的桶进行排序。</li>
-<li>从不是空的桶里面把排序好的数据进行拼接；</li>
-</ul>
+<h5 id="图示-6"><a href="#图示-6" class="headerlink" title="图示"></a>图示</h5><p><img src="../img/RedBlackTree.jpg" alt=""></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -611,7 +530,7 @@ func merge(nums []int,l int,r int,middle int){
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dylanddyf.github.io/2020/07/15/sort/">https://dylanddyf.github.io/2020/07/15/sort/</a>
+                    <a href="https://dylanddyf.github.io/2020/07/16/tree/">https://dylanddyf.github.io/2020/07/16/tree/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -649,12 +568,16 @@ func merge(nums []int,l int,r int,middle int){
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%8E%92%E5%BA%8F/">
-                                    <span class="chip bg-color">排序</span>
-                                </a>
-                            
                                 <a href="/tags/%E7%AE%97%E6%B3%95/">
                                     <span class="chip bg-color">算法</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%A0%91/">
+                                    <span class="chip bg-color">树</span>
+                                </a>
+                            
+                                <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+                                    <span class="chip bg-color">二叉树</span>
                                 </a>
                             
                         </div>
@@ -822,9 +745,10 @@ func merge(nums []int,l int,r int,middle int){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/07/16/tree/">
                     <div class="card-image">
@@ -852,9 +776,9 @@ func merge(nums []int,l int,r int,middle int){
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -863,6 +787,7 @@ func merge(nums []int,l int,r int,middle int){
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -889,24 +814,29 @@ func merge(nums []int,l int,r int,middle int){
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/04/hello-world/">
+                <a href="/2020/07/15/sort/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="排序">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            选择排序思想：将数组分为已排序和未排序两部分，每次从未排序部分选出最小的数放入已排序部分
+图解
+步骤
+记上待排序部分的第一个数字的索引min
+对待排序部分遍历，如果有比第nums[min]小的，将索引值赋min
+将待排序部分首元素与nums
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-15
                             </span>
                         <span class="publish-author">
                             
@@ -915,6 +845,18 @@ func merge(nums []int,l int,r int,middle int){
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%8E%92%E5%BA%8F/">
+                        <span class="chip bg-color">排序</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
                 </div>
                 
             </div>
