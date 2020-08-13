@@ -486,68 +486,62 @@ getrange <span class="token keyword">key</span> <span class="token number">0</sp
 </li>
 <li>setrange key start end value:将start到end区间替换为value</li>
 <li>setnx key value:在指定的 key 不存在时，为 key 设置指定的值,如果存在就会设置失败</li>
-<li>msetnx k1 v1 k2 v2…:批量设置，要么一起成功，要么一起失败<pre class=" language-sql"><code class="language-sql">设置<span class="token keyword">user</span>:<span class="token number">1</span>对象<span class="token punctuation">,</span>用json方式
-<span class="token keyword">set</span> <span class="token keyword">user</span>:<span class="token number">1</span>{name:xx<span class="token punctuation">,</span>age:<span class="token number">1</span>}
-</code></pre>
-</li>
+<li>msetnx k1 v1 k2 v2…:批量设置，要么一起成功，要么一起失败</li>
 </ul>
-<p>key的设计:user:{id}:{filed}<br>mset user:1 name xx user:1 age 1</p>
-<pre><code>
+<pre class=" language-sql"><code class="language-sql">设置<span class="token keyword">user</span>:<span class="token number">1</span>对象<span class="token punctuation">,</span>用json方式
+<span class="token keyword">set</span> <span class="token keyword">user</span>:<span class="token number">1</span>{name:xx<span class="token punctuation">,</span>age:<span class="token number">1</span>}
 
-##### list：可作为栈、队列、阻塞队列使用
-- lpush list value:在list左边添加
-- rpush list value:在list右边添加
-- lpop list:弹出最左边元素
-- rpop list:弹出最右边元素
-- lrange list start end:截取start到end的元素
-- lindex list index:通过下标获取值
-- llen list：获取list的大小
-- lpoprpush list1 list2:组合命令，将list1中的最左元素添加到list2的最右边
-- lset list index value:将第index个元素替换成value
-
-
-##### set
-- sadd set value:在set中添加一个元素
-- scard set:获取set中元素的个数
-- sdiff set1 set2：返回集合之间的差集
-- sinter set1 set2:返回集合之间的交集
-- sunion set1 set2:返回集合之间的并集
-- smembers set:返回set中的所有成员
-- spop set:随机删除并返回一个元素
-- sismember set value:判断value是否是set中的元素
-- smove set1 set2 value：将一个指定的set1中的值移动大另一个set2中
-
-##### hash
-- hset hash field value:给hash设置字段
-- hget hash field:获取字段
-- hmset hash field1 value1 [……]:批量获取字段
-- hgetall hash:获取全部数据
-- hdel hash field：删除hash中的字段
-- hlen hash:获取hash字段数量
-- hexists hash filed：查看字段是否存在
-- hkeys hash:获取所有key
-- hvals hash:获取所有值
-- hincrby hash field number:field增加number
-- hsetnx hash field value:如果field不存在，则可以设值
-
-
-##### zset(有序集合)
-- zset key1 score value:
-- zadd set key value:添加元素
-- zrange set start end:从start到end截取set元素
-- zrangebyscore set -inf +inf:从小到大排序
-- zrem set field:删除元素
-- zcard set：获取有序集合中的个数
-- zcount set start end:获取start到end之间的元素个数
-
-
-##### geospatial 地理位置
-
-应用：定位信息存储、附近的人计算、打车距离计算,底层维护的是一个zset，可以是有zset的操作
-
-- geoadd key  longitude latitude member:用于存储指定的地理空间位置，可以将一个或多个经度(longitude)、纬度(latitude)、位置名称(member)添加到指定的 key 中。
-```sql
-geoadd china:city 116.40 39.90 beijing</code></pre><ul>
+<span class="token keyword">key</span>的设计:<span class="token keyword">user</span>:{id}:{filed}
+mset <span class="token keyword">user</span>:<span class="token number">1</span> name xx <span class="token keyword">user</span>:<span class="token number">1</span> age <span class="token number">1</span></code></pre>
+<h5 id="list：可作为栈、队列、阻塞队列使用"><a href="#list：可作为栈、队列、阻塞队列使用" class="headerlink" title="list：可作为栈、队列、阻塞队列使用"></a>list：可作为栈、队列、阻塞队列使用</h5><ul>
+<li>lpush list value:在list左边添加</li>
+<li>rpush list value:在list右边添加</li>
+<li>lpop list:弹出最左边元素</li>
+<li>rpop list:弹出最右边元素</li>
+<li>lrange list start end:截取start到end的元素</li>
+<li>lindex list index:通过下标获取值</li>
+<li>llen list：获取list的大小</li>
+<li>lpoprpush list1 list2:组合命令，将list1中的最左元素添加到list2的最右边</li>
+<li>lset list index value:将第index个元素替换成value</li>
+</ul>
+<h5 id="set"><a href="#set" class="headerlink" title="set"></a>set</h5><ul>
+<li>sadd set value:在set中添加一个元素</li>
+<li>scard set:获取set中元素的个数</li>
+<li>sdiff set1 set2：返回集合之间的差集</li>
+<li>sinter set1 set2:返回集合之间的交集</li>
+<li>sunion set1 set2:返回集合之间的并集</li>
+<li>smembers set:返回set中的所有成员</li>
+<li>spop set:随机删除并返回一个元素</li>
+<li>sismember set value:判断value是否是set中的元素</li>
+<li>smove set1 set2 value：将一个指定的set1中的值移动大另一个set2中</li>
+</ul>
+<h5 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h5><ul>
+<li>hset hash field value:给hash设置字段</li>
+<li>hget hash field:获取字段</li>
+<li>hmset hash field1 value1 [……]:批量获取字段</li>
+<li>hgetall hash:获取全部数据</li>
+<li>hdel hash field：删除hash中的字段</li>
+<li>hlen hash:获取hash字段数量</li>
+<li>hexists hash filed：查看字段是否存在</li>
+<li>hkeys hash:获取所有key</li>
+<li>hvals hash:获取所有值</li>
+<li>hincrby hash field number:field增加number</li>
+<li>hsetnx hash field value:如果field不存在，则可以设值</li>
+</ul>
+<h5 id="zset-有序集合"><a href="#zset-有序集合" class="headerlink" title="zset(有序集合)"></a>zset(有序集合)</h5><ul>
+<li>zset key1 score value:</li>
+<li>zadd set key value:添加元素</li>
+<li>zrange set start end:从start到end截取set元素</li>
+<li>zrangebyscore set -inf +inf:从小到大排序</li>
+<li>zrem set field:删除元素</li>
+<li>zcard set：获取有序集合中的个数</li>
+<li>zcount set start end:获取start到end之间的元素个数</li>
+</ul>
+<h5 id="geospatial-地理位置"><a href="#geospatial-地理位置" class="headerlink" title="geospatial 地理位置"></a>geospatial 地理位置</h5><p>应用：定位信息存储、附近的人计算、打车距离计算,底层维护的是一个zset，可以是有zset的操作</p>
+<ul>
+<li><p>geoadd key  longitude latitude member:用于存储指定的地理空间位置，可以将一个或多个经度(longitude)、纬度(latitude)、位置名称(member)添加到指定的 key 中。</p>
+<pre class=" language-sql"><code class="language-sql">geoadd china:city <span class="token number">116.40</span> <span class="token number">39.90</span> beijing</code></pre>
+</li>
 <li><p>geodist key member1 member2 [m米/km千米/ft英尺/mi英里]:按照给定的单位返回两个定位之间的距离</p>
 <pre class=" language-sql"><code class="language-sql">geodist china:city beijing shanghai km </code></pre>
 </li>
