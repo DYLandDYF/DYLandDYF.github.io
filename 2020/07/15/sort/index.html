@@ -452,20 +452,21 @@
 <li>将待排序部分首元素与nums[min]交换</li>
 <li>重复3和4</li>
 </ol>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>func SelectSort(nums []int,cur int){
-    if cur&gt;=len(nums){
-        return
-    }
-    var min int=cur
-    for i :=cur+1;i&lt;len(nums);i++  {
-        if nums[i]&lt;nums[min]{
-            min=i
-        }
-    }
-    nums[cur],nums[min]=nums[min],nums[cur]
-    cur++
-    SelectSort(nums,cur)
-}</code></pre><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>思想：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">SelectSort</span><span class="token punctuation">(</span>nums <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span>cur <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span> cur<span class="token operator">>=</span><span class="token function">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">var</span> min <span class="token builtin">int</span><span class="token operator">=</span>cur
+    <span class="token keyword">for</span> i <span class="token operator">:=</span>cur<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token function">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span>  <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">&lt;</span>nums<span class="token punctuation">[</span>min<span class="token punctuation">]</span><span class="token punctuation">{</span>
+            min<span class="token operator">=</span>i
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    nums<span class="token punctuation">[</span>cur<span class="token punctuation">]</span><span class="token punctuation">,</span>nums<span class="token punctuation">[</span>min<span class="token punctuation">]</span><span class="token operator">=</span>nums<span class="token punctuation">[</span>min<span class="token punctuation">]</span><span class="token punctuation">,</span>nums<span class="token punctuation">[</span>cur<span class="token punctuation">]</span>
+    cur<span class="token operator">++</span>
+    <span class="token function">SelectSort</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>cur<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>思想：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序</p>
 <h4 id="图解-1"><a href="#图解-1" class="headerlink" title="图解"></a>图解</h4><p><img src="../img/7789414-fb94ab5405281f89.png" alt=""></p>
 <h4 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h4><ol>
 <li>选择一个基准值，为了方便选择待排序部分首元素,用l表示左指针，r表示右指针</li>
@@ -473,43 +474,44 @@
 <li>对左指针进行移动，直到有大于基准值的元素出现，l所指的值赋予r所指的元素,l小于r</li>
 <li>当l和r相等时，就将基准值赋予该元素，基准值将数组分为左右两部分，对这两部分进行2到4的操作</li>
 </ol>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><pre><code>func QuickSort(nums []int,l int,r int){
-    //对左右下标进行比较，l小于r时就返回，防止程序出错
-    if l&gt;r{
-        return
-    }
-    //pviot为基准值
-    var pviot int=nums[l]
-    //保存函数中传入的l原值
-    var left int=l
-    //保存函数中传入的r原值
-    var right int=r
-    //循环排序
-    for l&lt;r{
-        //基准值选了待排序部分最左边，所以从r开始
-        //如果右边得值大于基准值，不用与左边交换，只需r减小，直到右边的值小于基准值
-        for pviot&lt;=nums[r]&amp;&amp;l&lt;r{
-            r--
-        }
-        //此时右边所指的数小于左边，需要将右边得值赋给左边
-        if r&gt;l{
-            nums[l]=nums[r]
-        }
-        for pviot&gt;=nums[l]&amp;&amp;l&lt;r{
-            l++
-        }
-        if r&gt;l{
-            nums[r]=nums[l]
-        }
-    }
-    //此时l和r指向同一个数字，把基准值放在此处
-    nums[l]=pviot
-    //对基准值左边进行快速排序
-    QuickSort(nums,left,l-1)
-    //对基准值右边进行快速排序
-    QuickSort(nums,r+1,right)
-    return
-}</code></pre><h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>思想：归并排序，是创建在归并操作上的一种有效的排序算法。算法是采用分治法的一个非常典型的应用，且各层分治递归可以同时进行。</p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">QuickSort</span><span class="token punctuation">(</span>nums <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span>l <span class="token builtin">int</span><span class="token punctuation">,</span>r <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//对左右下标进行比较，l小于r时就返回，防止程序出错</span>
+    <span class="token keyword">if</span> l<span class="token operator">></span>r<span class="token punctuation">{</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//pviot为基准值</span>
+    <span class="token keyword">var</span> pviot <span class="token builtin">int</span><span class="token operator">=</span>nums<span class="token punctuation">[</span>l<span class="token punctuation">]</span>
+    <span class="token comment" spellcheck="true">//保存函数中传入的l原值</span>
+    <span class="token keyword">var</span> left <span class="token builtin">int</span><span class="token operator">=</span>l
+    <span class="token comment" spellcheck="true">//保存函数中传入的r原值</span>
+    <span class="token keyword">var</span> right <span class="token builtin">int</span><span class="token operator">=</span>r
+    <span class="token comment" spellcheck="true">//循环排序</span>
+    <span class="token keyword">for</span> l<span class="token operator">&lt;</span>r<span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//基准值选了待排序部分最左边，所以从r开始</span>
+        <span class="token comment" spellcheck="true">//如果右边得值大于基准值，不用与左边交换，只需r减小，直到右边的值小于基准值</span>
+        <span class="token keyword">for</span> pviot<span class="token operator">&lt;=</span>nums<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token operator">&amp;&amp;</span>l<span class="token operator">&lt;</span>r<span class="token punctuation">{</span>
+            r<span class="token operator">--</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//此时右边所指的数小于左边，需要将右边得值赋给左边</span>
+        <span class="token keyword">if</span> r<span class="token operator">></span>l<span class="token punctuation">{</span>
+            nums<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token operator">=</span>nums<span class="token punctuation">[</span>r<span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span> pviot<span class="token operator">>=</span>nums<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token operator">&amp;&amp;</span>l<span class="token operator">&lt;</span>r<span class="token punctuation">{</span>
+            l<span class="token operator">++</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> r<span class="token operator">></span>l<span class="token punctuation">{</span>
+            nums<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token operator">=</span>nums<span class="token punctuation">[</span>l<span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//此时l和r指向同一个数字，把基准值放在此处</span>
+    nums<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token operator">=</span>pviot
+    <span class="token comment" spellcheck="true">//对基准值左边进行快速排序</span>
+    <span class="token function">QuickSort</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>left<span class="token punctuation">,</span>l<span class="token number">-1</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">//对基准值右边进行快速排序</span>
+    <span class="token function">QuickSort</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>r<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>right<span class="token punctuation">)</span>
+    <span class="token keyword">return</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>思想：归并排序，是创建在归并操作上的一种有效的排序算法。算法是采用分治法的一个非常典型的应用，且各层分治递归可以同时进行。</p>
 <ul>
 <li>分解（Divide）： 将n个元素分成个含n/2个元素的子序列。</li>
 <li>解决（Conquer）：用合并排序法对两个子序列递归的排序。</li>
@@ -522,46 +524,47 @@
 <li>对右边部分递归进行归并排序</li>
 <li>对这两部分进行合并</li>
 </ol>
-<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><pre><code>func MergeSort(nums []int,l int,r int){
-    if l&gt;=r{
-        return
-    }
-    var middle int=(l+r)/2
-    MergeSort(nums,l,middle)
-    MergeSort(nums,middle+1,r)
-    merge(nums,l,r,middle)
-}
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">MergeSort</span><span class="token punctuation">(</span>nums <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span>l <span class="token builtin">int</span><span class="token punctuation">,</span>r <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span> l<span class="token operator">>=</span>r<span class="token punctuation">{</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">var</span> middle <span class="token builtin">int</span><span class="token operator">=</span><span class="token punctuation">(</span>l<span class="token operator">+</span>r<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span>
+    <span class="token function">MergeSort</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>l<span class="token punctuation">,</span>middle<span class="token punctuation">)</span>
+    <span class="token function">MergeSort</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>middle<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>r<span class="token punctuation">)</span>
+    <span class="token function">merge</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>l<span class="token punctuation">,</span>r<span class="token punctuation">,</span>middle<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-func merge(nums []int,l int,r int,middle int){
-    var temp []int=make([]int, r-l+1)
-    var i int=0
-    var j int=l
-    var k int=middle+1
-    for j&lt;=middle&amp;&amp;k&lt;=r{
-        if nums[j] &lt;= nums[k]{
-            temp[i]=nums[j]
-            j++
-            i++
-        }else{
-            temp[i]=nums[k]
-            k++
-            i++
-        }
-    }
-    for j&lt;=middle{
-        temp[i]=nums[j]
-        j++
-        i++
-    }
-    for k&lt;=r{
-        temp[i]=nums[k]
-        k++
-        i++
-    }
-    for i=0;i&lt;len(temp);i++{
-        nums[l+i]=temp[i]
-    }
-}</code></pre><h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><p>思想：工作的原理是将数组分到有限数量的桶子里。每个桶子再个别排序，有可能再使用别的排序算法或是以递归方式继续使用桶排序</p>
+<span class="token keyword">func</span> <span class="token function">merge</span><span class="token punctuation">(</span>nums <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span>l <span class="token builtin">int</span><span class="token punctuation">,</span>r <span class="token builtin">int</span><span class="token punctuation">,</span>middle <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> temp <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token operator">=</span><span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span> r<span class="token operator">-</span>l<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">var</span> i <span class="token builtin">int</span><span class="token operator">=</span><span class="token number">0</span>
+    <span class="token keyword">var</span> j <span class="token builtin">int</span><span class="token operator">=</span>l
+    <span class="token keyword">var</span> k <span class="token builtin">int</span><span class="token operator">=</span>middle<span class="token operator">+</span><span class="token number">1</span>
+    <span class="token keyword">for</span> j<span class="token operator">&lt;=</span>middle<span class="token operator">&amp;&amp;</span>k<span class="token operator">&lt;=</span>r<span class="token punctuation">{</span>
+        <span class="token keyword">if</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> nums<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">{</span>
+            temp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+            j<span class="token operator">++</span>
+            i<span class="token operator">++</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+            temp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>nums<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+            k<span class="token operator">++</span>
+            i<span class="token operator">++</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> j<span class="token operator">&lt;=</span>middle<span class="token punctuation">{</span>
+        temp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+        j<span class="token operator">++</span>
+        i<span class="token operator">++</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> k<span class="token operator">&lt;=</span>r<span class="token punctuation">{</span>
+        temp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>nums<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+        k<span class="token operator">++</span>
+        i<span class="token operator">++</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token function">len</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">{</span>
+        nums<span class="token punctuation">[</span>l<span class="token operator">+</span>i<span class="token punctuation">]</span><span class="token operator">=</span>temp<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><p>思想：工作的原理是将数组分到有限数量的桶子里。每个桶子再个别排序，有可能再使用别的排序算法或是以递归方式继续使用桶排序</p>
 <h4 id="步骤-3"><a href="#步骤-3" class="headerlink" title="步骤"></a>步骤</h4><ul>
 <li>设置一个定量的数组当作空桶；</li>
 <li>遍历输入数据，并且把数据一个一个放到对应的桶里面去；</li>
@@ -574,38 +577,40 @@ func merge(nums []int,l int,r int,middle int){
 <li>从第一个元素开始依次向后取出元素，与它前面已经排序的序列比较，将它插入到合适的位置</li>
 </ol>
 <h5 id="图解-3"><a href="#图解-3" class="headerlink" title="图解"></a>图解</h5><p><img src="../img/insertSort.jpg" alt=""></p>
-<h5 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h5><pre><code>func InsertSort(nums []int,cur int){
-    if cur&gt;=len(nums){
-        return
-    }
-    var temp int=nums[cur]
-    var i int
-    for i=cur;i&gt;0;i--{
-        if nums[i-1]&gt;temp {
-            nums[i]=nums[i-1]
-        } else{
-            nums[i]=temp
-            break
-        }
-    }
-    InsertSort(nums,cur+1)
-}</code></pre><h4 id="希尔排序（shell-sort）"><a href="#希尔排序（shell-sort）" class="headerlink" title="希尔排序（shell sort）"></a>希尔排序（shell sort）</h4><p>思想:希尔排序算是对简单插入排序的一种改进，属于一种增量式的排序算法，通过对数组”分组微调”,使大部分元素有序，减少插入排序的工作量</p>
+<h5 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h5><pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">InsertSort</span><span class="token punctuation">(</span>nums <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span>cur <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span> cur<span class="token operator">>=</span><span class="token function">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">var</span> temp <span class="token builtin">int</span><span class="token operator">=</span>nums<span class="token punctuation">[</span>cur<span class="token punctuation">]</span>
+    <span class="token keyword">var</span> i <span class="token builtin">int</span>
+    <span class="token keyword">for</span> i<span class="token operator">=</span>cur<span class="token punctuation">;</span>i<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">--</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span> nums<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">></span>temp <span class="token punctuation">{</span>
+            nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>nums<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span><span class="token punctuation">{</span>
+            nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>temp
+            <span class="token keyword">break</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">InsertSort</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>cur<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="希尔排序（shell-sort）"><a href="#希尔排序（shell-sort）" class="headerlink" title="希尔排序（shell sort）"></a>希尔排序（shell sort）</h4><p>思想:希尔排序算是对简单插入排序的一种改进，属于一种增量式的排序算法，通过对数组”分组微调”,使大部分元素有序，减少插入排序的工作量</p>
 <h5 id="图解-4"><a href="#图解-4" class="headerlink" title="图解"></a>图解</h5><p><img src="../img/shellsort.png" alt=""></p>
-<pre><code>func ShellSort(nums[] int){
-    var n int=len(nums)/2
-    for n&gt;0{
-        for i :=n;i&lt;len(nums);i++{
-            var temp int=nums[i]
-            var tag int=i-n
-            for tag&gt;=0&amp;&amp;nums[tag]&gt;temp{
-                nums[tag+n]=nums[tag]
-                tag=tag-n
-            }
-            nums[tag+n]=temp
-        }
-        n=n/2
-    }
-}</code></pre><script>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">ShellSort</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> n <span class="token builtin">int</span><span class="token operator">=</span><span class="token function">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span>
+    <span class="token keyword">for</span> n<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">{</span>
+        <span class="token keyword">for</span> i <span class="token operator">:=</span>n<span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token function">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">{</span>
+            <span class="token keyword">var</span> temp <span class="token builtin">int</span><span class="token operator">=</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+            <span class="token keyword">var</span> tag <span class="token builtin">int</span><span class="token operator">=</span>i<span class="token operator">-</span>n
+            <span class="token keyword">for</span> tag<span class="token operator">>=</span><span class="token number">0</span><span class="token operator">&amp;&amp;</span>nums<span class="token punctuation">[</span>tag<span class="token punctuation">]</span><span class="token operator">></span>temp<span class="token punctuation">{</span>
+                nums<span class="token punctuation">[</span>tag<span class="token operator">+</span>n<span class="token punctuation">]</span><span class="token operator">=</span>nums<span class="token punctuation">[</span>tag<span class="token punctuation">]</span>
+                tag<span class="token operator">=</span>tag<span class="token operator">-</span>n
+            <span class="token punctuation">}</span>
+            nums<span class="token punctuation">[</span>tag<span class="token operator">+</span>n<span class="token punctuation">]</span><span class="token operator">=</span>temp
+        <span class="token punctuation">}</span>
+        n<span class="token operator">=</span>n<span class="token operator">/</span><span class="token number">2</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
