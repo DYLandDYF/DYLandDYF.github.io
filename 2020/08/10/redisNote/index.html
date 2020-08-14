@@ -593,7 +593,7 @@ mset <span class="token keyword">user</span>:<span class="token number">1</span>
 </ul>
 <p>如果事务失败，先解锁，然后重新加锁，再次进行事务操作</p>
 <p><img src="../img/OptimisticLocking.png" alt=""></p>
-<h4 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h4><h5 id="RDB-Redis-DataBase"><a href="#RDB-Redis-DataBase" class="headerlink" title="RDB(Redis DataBase)"></a>RDB(Redis DataBase)</h5><p>RDB：保存redis数据的快照，Redis会单独创建(fork)一个子进程来进行持久化,会先将数据写入到一个临时文件中，持久化进程结束后，再替换以前持久化的文件。恢复时，Redis会直接将快照读入内存。</p>
+<h4 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h4><h5 id="RDB-Redis-DataBase"><a href="#RDB-Redis-DataBase" class="headerlink" title="RDB(Redis DataBase)"></a>RDB(Redis DataBase)</h5><p>RDB：保存redis数据的快照，Redis会单独创建(fork)一个子进程来进行持久化,会先将数据写入到一个临时文件中(dump.rdb)，持久化进程结束后，再替换以前持久化的文件。恢复时，Redis会直接将快照读入内存。</p>
 <p>优点:</p>
 <ol>
 <li>一般时候对性能影响较小</li>
@@ -610,6 +610,7 @@ mset <span class="token keyword">user</span>:<span class="token number">1</span>
 <li>bgsave触发方式：执行该命令时，Redis会在后台异步进行快照操作，快照同时还可以响应客户端请求<br><img src="../img/rdb2.jpg" alt=""></li>
 <li>自动触发：在配置文件中设置触发规则。执行flushall或者退出Redis时，也会自动触发RDB</li>
 </ol>
+<p>只要将RDB文件放在Redis启动目录，Redis启动时会自动恢复</p>
 <h5 id="AOF-Append-Only-File"><a href="#AOF-Append-Only-File" class="headerlink" title="AOF(Append Only File)"></a>AOF(Append Only File)</h5><p>以日志的形式来记录每个写操作，将所有的指令记录下来，只许追加文件不允许写，Redis启动之后会读取该文件(appendonly.aof)重新构建。</p>
 <p>与RDB不同，AOF需要手动开启。</p>
 <p>AOF机制的优点:</p>
@@ -623,6 +624,56 @@ mset <span class="token keyword">user</span>:<span class="token number">1</span>
 <li>对于同一份数据来说，AOF日志文件通常比RDB数据快照文件更大</li>
 <li>AOF开启后，支持的写QPS会比RDB支持的写QPS低，因为AOF一般会配置成每秒fsync一次日志文件，当然，每秒一次fsync，性能也还是很高的</li>
 <li>以前AOF发生过bug，就是通过AOF记录的日志，进行数据恢复的时候，没有恢复一模一样的数据出来。</li>
+<li>AOF文件错误，则Redis无法启动</li>
+</ol>
+<h4 id="Redis基准测试"><a href="#Redis基准测试" class="headerlink" title="Redis基准测试"></a>Redis基准测试</h4><p>redis-benchmark [option] [option value]</p>
+<pre class=" language-sql"><code class="language-sql">同时执行 <span class="token number">10000</span> 个请求来检测性能
+redis<span class="token operator">-</span>benchmark <span class="token operator">-</span>n <span class="token number">10000</span> <span class="token operator">-</span>q</code></pre>
+<h4 id="Redis订阅发布"><a href="#Redis订阅发布" class="headerlink" title="Redis订阅发布"></a>Redis订阅发布</h4><p>Redis订阅发布是一种消息通信模式：发送者(pub)发送消息,订阅者(sub)接收消息，Redis可以订阅任意数量的频道</p>
+<p>订阅一个频道后，Redis-server里维护了一个字典，这个字典的键就是一个个频道，字典的值是一个链表，链表中包含了所有订阅这个频道的客户端。</p>
+<p>订阅消息发布：<br><img src="../img/Redispubsub.png" alt=""></p>
+<p>操作命令：</p>
+<ul>
+<li>subscribe name:订阅一个频道</li>
+<li>publish name value:发布消息到频道</li>
+</ul>
+<h4 id="Redis集群部署"><a href="#Redis集群部署" class="headerlink" title="Redis集群部署"></a>Redis集群部署</h4><p>Redis在默认的情况下，每台Redis服务器都是一个主节点。一般使用时最少是一主二从的结构。</p>
+<p>主节点是用来进行写操作的，从节点是用来进行读操作的。</p>
+<ul>
+<li>slaveof host port：将本机配置为某Redis服务器的从节点（重启之后会自动变回主节点）。</li>
+</ul>
+<p>在主节点断开后，从节点依旧是连接在主节点，但是无法进行写操作。主节点重新连接，从节点可以获取主节点的写信息。</p>
+<p>主从复制的原理：salve节点启动连接到master节点后，会发送sync同步命令。master节点收到命令后，启动后台存盘进程，同时收集所有接收到的用于修改数据集命令，在后台进程执行完毕后，master将传送整个数据文件到slave，并完成一次完全同步</p>
+<p>全量复制：salve接收到文件之后，将其存盘并加载进内存<br>增量复制：master继续将行接收到的命令依次传给slave完成同步</p>
+<p>只要重新连接master，一次完全同步(全量复制)将自动执行</p>
+<p>主从复制的作用：</p>
+<ol>
+<li>热备份</li>
+<li>故障恢复</li>
+<li>负载均衡</li>
+<li>高可用(集群)基石</li>
+</ol>
+<h4 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h4><p>服务器宕机之后，手动配置的话费时费力，哨兵(sentinel)模式会自动从从节点中选举出一台作为主节点，如果原主节点恢复了，将会成为一个从节点</p>
+<p>哨兵是一个独立的进程，会独立运行，哨兵通过发送命令，等待Redis服务器响应，从而监控多个Redis实例。多个哨兵之间也会相互监控。<br>服务器宕机后，只被一个哨兵发现时，会被该哨兵主观认为是不可用的，称为主观下线。多个哨兵检测到主节点不可用并且达到一定数量，哨兵会进行一次投票，投票由一个哨兵发起，进行failover(故障转移)操作。切换成功后，会通过发布订阅模式，让各个哨兵把自己监控的从节点实现切换为主节点，这个过程称为客观下线。</p>
+<h4 id="Redis缓存穿透"><a href="#Redis缓存穿透" class="headerlink" title="Redis缓存穿透"></a>Redis缓存穿透</h4><p>缓存穿透：key对应的数据在数据源并不存在，每次针对此key的请求从缓存获取不到，请求都会到数据源，从而可能压垮数据源</p>
+<p>例子：用户想要查询一个数据，发现redis内存数据库没有，也就是缓存没有命中，于是向持久层数据库查询。发现也没有，于是本次查询失败。当用户很多的时候，缓存都没有命中，于是都去请求了持久层数据库。这会给持久层数据库造成很大的压力，这时候就相当于出现了缓存穿透</p>
+<p>解决方案：</p>
+<ol>
+<li>布隆过滤器：</li>
+<li>缓存空对象：当存储层不命中后，即使返回的空对象也将其缓存起来，同时会设置一个过期时间，之后再访问这个数据将会从缓存中获取，保护了后端数据源；带来的问题：如果空值能够被缓存起来，这就意味着缓存需要更多的空间存储更多的键，因为这当中可能会有很多的空值的键；即使对空值设置了过期时间，还是会存在缓存层和存储层的数据会有一段时间窗口的不一致，这对于需要保持一致性的业务会有影响。</li>
+</ol>
+<h4 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h4><p>概念：当缓存服务器重启或者大量缓存集中在某一个时间段失效，这样在失效的时候，也会给后端系统(比如DB)带来很大压力。</p>
+<p>解决方案：</p>
+<ol>
+<li>Redis高可用</li>
+<li>流量降级</li>
+<li>数据预热</li>
+</ol>
+<h4 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h4><p>概念：指一个key非常热点，扛着很大的并发量，当key失效的瞬间，持续的大并发就会穿破缓存层，直接请求数据库，数据库压力暴增。</p>
+<p>解决方案：</p>
+<ol>
+<li>设置热点永不过期</li>
+<li>加互斥锁</li>
 </ol>
 <script>
         document.querySelectorAll('.github-emoji')
