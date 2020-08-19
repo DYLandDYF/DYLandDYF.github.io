@@ -484,6 +484,23 @@ zhangsan
 <span class="token keyword">func</span> <span class="token function">GetPerson</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span>person<span class="token punctuation">{</span>
     <span class="token keyword">return</span> p
 <span class="token punctuation">}</span></code></pre>
+<h5 id="双重检查"><a href="#双重检查" class="headerlink" title="双重检查"></a>双重检查</h5><p>在懒汉式的基础上再进行优化，减少加锁的操作，保证线程安全的同时不影响性能。</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> person <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    Name <span class="token builtin">string</span>
+    Age <span class="token builtin">int64</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> lock sync<span class="token punctuation">.</span>Mutex
+<span class="token keyword">var</span> p <span class="token operator">*</span>person
+<span class="token keyword">func</span> <span class="token function">GetPerson</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span>person<span class="token punctuation">{</span>
+    <span class="token keyword">if</span> p<span class="token operator">==</span><span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        lock<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> p<span class="token operator">==</span><span class="token boolean">nil</span> <span class="token punctuation">{</span>
+            p<span class="token operator">=</span><span class="token function">new</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        lock<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> p
+<span class="token punctuation">}</span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
