@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="单例模式, goder">
+    <meta name="keywords" content="go语言包管理, goder">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>单例模式 | goder</title>
+    <title>go语言包管理 | goder</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">单例模式</h1>
+                    <h1 class="description center-align post-title">go语言包管理</h1>
                 </div>
             </div>
         </div>
@@ -408,12 +408,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/go%E8%AF%AD%E8%A8%80/">
-                                <span class="chip bg-color">go语言</span>
+                            <a href="/tags/go/">
+                                <span class="chip bg-color">go</span>
                             </a>
                         
-                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-                                <span class="chip bg-color">设计模式</span>
+                            <a href="/tags/package/">
+                                <span class="chip bg-color">package</span>
                             </a>
                         
                     </div>
@@ -428,7 +428,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-19
+                    2020-08-20
                 </div>
                 
 
@@ -444,79 +444,16 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h4><p>所谓单例，就是整个程序有且仅有一个实例，go语言实现单例模式有懒汉式、饿汉式、双重检查、sync.Once这几种方法</p>
-<h5 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h5><p>在需要用到时才创建实例，但不是线程安全的，在多线程（协程）模式时可以被创建多个实例</p>
-<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> person <span class="token keyword">struct</span> <span class="token punctuation">{</span>
-    Name <span class="token builtin">string</span>
-    Age <span class="token builtin">int64</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">var</span> p <span class="token operator">*</span>person
-<span class="token keyword">func</span> <span class="token function">GetPerson</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span>person<span class="token punctuation">{</span>
-    <span class="token keyword">if</span> p<span class="token operator">==</span><span class="token boolean">nil</span> <span class="token punctuation">{</span>
-        p<span class="token operator">=</span><span class="token function">new</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span>
-        p<span class="token punctuation">.</span>Name<span class="token operator">=</span><span class="token string">"hello"</span>
-        p<span class="token punctuation">.</span>Age<span class="token operator">=</span><span class="token number">12</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> p
-<span class="token punctuation">}</span>
-
-<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    p<span class="token operator">:=</span> <span class="token function">GetPerson</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>Name<span class="token punctuation">)</span>
-    f<span class="token operator">:=</span><span class="token function">GetPerson</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    f<span class="token punctuation">.</span>Name<span class="token operator">=</span><span class="token string">"zhangsan"</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>Name<span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-
-
-<span class="token comment" spellcheck="true">//输出结果</span>
-hello
-zhangsan
-</code></pre>
-<h5 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h5><p>实例在初始化的时候就已经建好了，不管你有没有用到，都先建好了再说，占用内存</p>
-<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> person <span class="token keyword">struct</span> <span class="token punctuation">{</span>
-    Name <span class="token builtin">string</span>
-    Age <span class="token builtin">int64</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">var</span> p <span class="token operator">*</span>person<span class="token operator">=</span><span class="token operator">&amp;</span>person<span class="token punctuation">{</span>Name<span class="token punctuation">:</span><span class="token string">"zhangsan"</span><span class="token punctuation">,</span>Age<span class="token punctuation">:</span><span class="token number">13</span><span class="token punctuation">}</span>
-<span class="token keyword">func</span> <span class="token function">GetPerson</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span>person<span class="token punctuation">{</span>
-    <span class="token keyword">return</span> p
-<span class="token punctuation">}</span></code></pre>
-<h5 id="双重检查"><a href="#双重检查" class="headerlink" title="双重检查"></a>双重检查</h5><p>在懒汉式的基础上再进行优化，减少加锁的操作，保证线程安全的同时不影响性能。</p>
-<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> person <span class="token keyword">struct</span> <span class="token punctuation">{</span>
-    Name <span class="token builtin">string</span>
-    Age <span class="token builtin">int64</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">var</span> lock sync<span class="token punctuation">.</span>Mutex
-<span class="token keyword">var</span> p <span class="token operator">*</span>person
-<span class="token keyword">func</span> <span class="token function">GetPerson</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span>person<span class="token punctuation">{</span>
-    <span class="token keyword">if</span> p<span class="token operator">==</span><span class="token boolean">nil</span> <span class="token punctuation">{</span>
-        lock<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> p<span class="token operator">==</span><span class="token boolean">nil</span> <span class="token punctuation">{</span>
-            p<span class="token operator">=</span><span class="token function">new</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span>
-        <span class="token punctuation">}</span>
-        lock<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> p
-<span class="token punctuation">}</span></code></pre>
-<h5 id="sync-Once"><a href="#sync-Once" class="headerlink" title="sync.Once"></a>sync.Once</h5><p>sync.Once可以确保只执行一次，本质上还是双重检查</p>
-<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> person <span class="token keyword">struct</span> <span class="token punctuation">{</span>
-    Name <span class="token builtin">string</span>
-    Age <span class="token builtin">int64</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">var</span> p <span class="token operator">*</span>person
-<span class="token keyword">var</span> once sync<span class="token punctuation">.</span>Once
-<span class="token keyword">func</span> <span class="token function">GetPerson</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span>person<span class="token punctuation">{</span>
-    once<span class="token punctuation">.</span><span class="token function">Do</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        p<span class="token operator">=</span><span class="token function">new</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span>
-        p<span class="token punctuation">.</span>Name<span class="token operator">=</span><span class="token string">"hello"</span>
-        p<span class="token punctuation">.</span>Age<span class="token operator">=</span><span class="token number">12</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> p
-<span class="token punctuation">}</span></code></pre>
+                <p>前言：在go语言中，有两种包管理方式gopath和go mod，导入自定义包和第三方包都需要准守一定的规则，并不是定义了包就能直接导入的。</p>
+<h4 id="go-mod"><a href="#go-mod" class="headerlink" title="go mod"></a>go mod</h4><p>go语言安装第三方包的时候，直接用go get命令大部分时候会因为墙的问题无法安装成功，使用go mod包管理模式可以通过代理解决这个问题，设置代理是需要在终端执行以下命令</p>
+<pre class=" language-shell"><code class="language-shell">go env -w GO111MODULE=on
+go env -w GOPROXY=https://goproxy.cn,direct</code></pre>
+<p>在go mod模式下，想要导入自定义包，需要创建go.mod文件，这样才可以成功导入并且使用自定义包</p>
+<pre class=" language-shell"><code class="language-shell">go mod init</code></pre>
+<p>go mod不依赖gopath，使用比较方便，还有以下一种常见命令<br><img src="../img/gomod.jpg" alt=""> </p>
+<h4 id="gopath模式"><a href="#gopath模式" class="headerlink" title="gopath模式"></a>gopath模式</h4><p>gopath包管理方式是默认的管理方式，gopath包管理模式要求工程项目必须放在gopath下的src目录下，想要导入自定义包，需要先编译包，然后再安装包</p>
+<pre class=" language-shell"><code class="language-shell">go build package
+go install package</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -560,7 +497,7 @@ zhangsan
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dylanddyf.github.io/2020/08/19/DesignPattern/">https://dylanddyf.github.io/2020/08/19/DesignPattern/</a>
+                    <a href="https://dylanddyf.github.io/2020/08/20/goPackage/">https://dylanddyf.github.io/2020/08/20/goPackage/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -598,12 +535,12 @@ zhangsan
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/go%E8%AF%AD%E8%A8%80/">
-                                    <span class="chip bg-color">go语言</span>
+                                <a href="/tags/go/">
+                                    <span class="chip bg-color">go</span>
                                 </a>
                             
-                                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-                                    <span class="chip bg-color">设计模式</span>
+                                <a href="/tags/package/">
+                                    <span class="chip bg-color">package</span>
                                 </a>
                             
                         </div>
@@ -771,9 +708,10 @@ zhangsan
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/08/20/goPackage/">
                     <div class="card-image">
@@ -792,9 +730,9 @@ go modgo语言安装第三方包的时候，直接用go get命令大部分时候
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -803,6 +741,7 @@ go modgo语言安装第三方包的时候，直接用go get命令大部分时候
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -825,26 +764,26 @@ go modgo语言安装第三方包的时候，直接用go get命令大部分时候
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/15/dockerNote/">
+                <a href="/2020/08/19/DesignPattern/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="docker笔记">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="单例模式">
                         
-                        <span class="card-title">docker笔记</span>
+                        <span class="card-title">单例模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Docker简介是一个开源的应用容器引擎，解决了部署环境配置麻烦的问题，可以让部署变得简单高效。
-容器技术有效的将单个操作系统的资源划分到孤立的组中，以便更好的在孤立的组之间平衡有冲突的资源使用需求，这种技术就是容器技术。
-容器话技术不是模
+                            单例模式所谓单例，就是整个程序有且仅有一个实例，go语言实现单例模式有懒汉式、饿汉式、双重检查、sync.Once这几种方法
+懒汉式在需要用到时才创建实例，但不是线程安全的，在多线程（协程）模式时可以被创建多个实例
+type person 
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-19
                             </span>
                         <span class="publish-author">
                             
@@ -857,8 +796,12 @@ go modgo语言安装第三方包的时候，直接用go get命令大部分时候
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/docker/">
-                        <span class="chip bg-color">docker</span>
+                    <a href="/tags/go%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">go语言</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <span class="chip bg-color">设计模式</span>
                     </a>
                     
                 </div>
