@@ -501,6 +501,22 @@ zhangsan
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> p
 <span class="token punctuation">}</span></code></pre>
+<h5 id="sync-Once"><a href="#sync-Once" class="headerlink" title="sync.Once"></a>sync.Once</h5><p>sync.Once可以确保只执行一次，本质上还是双重检查</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> person <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    Name <span class="token builtin">string</span>
+    Age <span class="token builtin">int64</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> p <span class="token operator">*</span>person
+<span class="token keyword">var</span> once sync<span class="token punctuation">.</span>Once
+<span class="token keyword">func</span> <span class="token function">GetPerson</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span>person<span class="token punctuation">{</span>
+    once<span class="token punctuation">.</span><span class="token function">Do</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        p<span class="token operator">=</span><span class="token function">new</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span>
+        p<span class="token punctuation">.</span>Name<span class="token operator">=</span><span class="token string">"hello"</span>
+        p<span class="token punctuation">.</span>Age<span class="token operator">=</span><span class="token number">12</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> p
+<span class="token punctuation">}</span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
