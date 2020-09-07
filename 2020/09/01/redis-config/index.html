@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="database/sql包, goder">
+    <meta name="keywords" content="Redis配置, goder">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>database/sql包 | goder</title>
+    <title>Redis配置 | goder</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">database/sql包</h1>
+                    <h1 class="description center-align post-title">Redis配置</h1>
                 </div>
             </div>
         </div>
@@ -408,16 +408,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                <span class="chip bg-color">数据库</span>
+                            <a href="/tags/Redis/">
+                                <span class="chip bg-color">Redis</span>
                             </a>
                         
-                            <a href="/tags/go%E8%AF%AD%E8%A8%80/">
-                                <span class="chip bg-color">go语言</span>
-                            </a>
-                        
-                            <a href="/tags/mysql/">
-                                <span class="chip bg-color">mysql</span>
+                            <a href="/tags/Redis%E9%85%8D%E7%BD%AE/">
+                                <span class="chip bg-color">Redis配置</span>
                             </a>
                         
                     </div>
@@ -432,7 +428,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-20
+                    2020-09-01
                 </div>
                 
 
@@ -448,100 +444,27 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>database/sql包是go语言官方提供的sql连接和使用的包，用以操作SQL和类SQL数据库，但是官方没有提供驱动，需要自己手动安装</p>
-<h4 id="安装mysql驱动包"><a href="#安装mysql驱动包" class="headerlink" title="安装mysql驱动包"></a>安装mysql驱动包</h4><p>在终端输入以下命令,就能安装mysql的驱动包</p>
-<pre class=" language-shell"><code class="language-shell">E:\code\go\src\design&gt;go get github.com/go-sql-driver/mysql
-go: github.com/go-sql-driver/mysql upgrade =&gt; v1.5.0</code></pre>
-<h4 id="导入相关包"><a href="#导入相关包" class="headerlink" title="导入相关包"></a>导入相关包</h4><p>在代码中导入database/sql包和驱动包,驱动包需要使用下划线导包的方式</p>
-<pre class=" language-go"><code class="language-go"><span class="token keyword">import</span> <span class="token punctuation">(</span>
+                <h4 id="启动设置"><a href="#启动设置" class="headerlink" title="启动设置"></a>启动设置</h4><p>将redis下的文件redis.conf备份一份，修改时直接修改原本的配置文件，将Redis改为后台启动(默认启动的方式不是后台启动)</p>
+<p>将Redis.conf中daemonize由no改为yes</p>
+<pre class=" language-shell"><code class="language-shell">################################# GENERAL #####################################
 
-    <span class="token string">"database/sql"</span>
-    <span class="token boolean">_</span> <span class="token string">"github.com/go-sql-driver/mysql"</span>
+# By default Redis does not run as a daemon. Use 'yes' if you need it.
+# Note that Redis will write a pid file in /var/run/redis.pid when daemonized.
+#daemonize no
+daemonize yes</code></pre>
+<p>然后用修改过的配置文件启动，</p>
+<pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ src]# ./redis-server ../redis.conf 
+5643:C 06 Sep 2020 23:42:14.977 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+5643:C 06 Sep 2020 23:42:14.977 # Redis version=6.0.7, bits=64, commit=00000000, modified=0, pid=5643, just started
+5643:C 06 Sep 2020 23:42:14.977 # Configuration loaded</code></pre>
+<h4 id="RDB配置"><a href="#RDB配置" class="headerlink" title="RDB配置"></a>RDB配置</h4><p>RDB的相关配置很多，主要配置的是触发规则</p>
+<pre class=" language-shell"><code class="language-shell">#   save ""
 
-<span class="token punctuation">)</span></code></pre>
-<h4 id="连接mysql"><a href="#连接mysql" class="headerlink" title="连接mysql"></a>连接mysql</h4><p>sql.Open()函数可以连接数据库，第一个参数是驱动名称，第二个参数是连接数据库必须要用到信息,DB不是连接，只有当需要使用时才会创建连接，如果想立即验证连接，需要用Ping()方法</p>
-<pre class=" language-go"><code class="language-go">db<span class="token punctuation">,</span>err<span class="token operator">:=</span>sql<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span><span class="token string">"mysql"</span><span class="token punctuation">,</span><span class="token string">"user:password@tcp(127.0.0.1:3306)/database"</span><span class="token punctuation">)</span>
-    <span class="token keyword">if</span> err <span class="token operator">!=</span><span class="token boolean">nil</span><span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//fmt.Println("连接失败")</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">defer</span> db<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    err <span class="token operator">:=</span>db<span class="token punctuation">.</span><span class="token function">Ping</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">if</span> err<span class="token operator">!=</span><span class="token boolean">nil</span> <span class="token punctuation">{</span>
-        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"状态错误"</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span></code></pre>
-<h4 id="DQL"><a href="#DQL" class="headerlink" title="DQL"></a>DQL</h4><p>使用数据库查询语言时，先用rows对象(sql.go中定义的结构体)接收db.Query()查询的结果，然后使用rows对象的next方法进行迭代,rows使用完也需要使用close方法关闭资源，把遍历到的数据存入变量使用rows.Scan()</p>
-<pre class=" language-go"><code class="language-go"><span class="token keyword">var</span> sql <span class="token builtin">string</span><span class="token operator">=</span><span class="token string">"select user_id,user_name from user;"</span>
-    <span class="token keyword">var</span><span class="token punctuation">(</span>
-        id <span class="token builtin">string</span>
-        name <span class="token builtin">string</span>
-    <span class="token punctuation">)</span>
-    rows<span class="token punctuation">,</span>err<span class="token operator">:=</span>db<span class="token punctuation">.</span><span class="token function">Query</span><span class="token punctuation">(</span>sql<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> err<span class="token operator">!=</span><span class="token boolean">nil</span> <span class="token punctuation">{</span>
-        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"查询失败"</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">defer</span> rows<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> rows<span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        err <span class="token operator">:=</span>rows<span class="token punctuation">.</span><span class="token function">Scan</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>id<span class="token punctuation">,</span><span class="token operator">&amp;</span>name<span class="token punctuation">)</span>
-        <span class="token keyword">if</span> err<span class="token operator">!=</span><span class="token boolean">nil</span><span class="token punctuation">{</span>
-            fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"查询失败"</span><span class="token punctuation">)</span>
-        <span class="token punctuation">}</span>
-        fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%s-----%s\n"</span><span class="token punctuation">,</span>id<span class="token punctuation">,</span>name<span class="token punctuation">)</span>
-    <span class="token punctuation">}</span></code></pre>
-<h4 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h4><p>在使用数据库操作语言的时候，使用db.Exec()方法可以执行insert、update、delete等语句</p>
-<pre class=" language-go"><code class="language-go"><span class="token keyword">var</span> sqlStr<span class="token operator">=</span><span class="token string">"update user set user_name=? where user_id=?"</span>
-     result<span class="token punctuation">,</span>err<span class="token operator">:=</span>db<span class="token punctuation">.</span><span class="token function">Exec</span><span class="token punctuation">(</span>sqlStr<span class="token punctuation">,</span><span class="token string">"张三"</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span>
-     <span class="token keyword">if</span> err<span class="token operator">!=</span><span class="token boolean">nil</span><span class="token punctuation">{</span>
-         fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"跟新失败"</span><span class="token punctuation">)</span>
-     <span class="token punctuation">}</span>
-     rows<span class="token punctuation">,</span>err<span class="token operator">:=</span>result<span class="token punctuation">.</span><span class="token function">RowsAffected</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-     <span class="token keyword">if</span> err<span class="token operator">!=</span><span class="token boolean">nil</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-     fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>rows<span class="token punctuation">)</span></code></pre>
-<h4 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h4><p>使用数据库定义语言的时候，同样是通过db.Exec()方法</p>
-<pre class=" language-go"><code class="language-go"><span class="token keyword">var</span> sqlStr<span class="token operator">=</span><span class="token string">"create table test(id int not null,info varchar(100) not null)"</span>
-    res<span class="token punctuation">,</span>err<span class="token operator">:=</span>db<span class="token punctuation">.</span><span class="token function">Exec</span><span class="token punctuation">(</span>sqlStr<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> err<span class="token operator">!=</span><span class="token boolean">nil</span> <span class="token punctuation">{</span>
-        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"err"</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span><span class="token function">RowsAffected</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<h4 id="DCL"><a href="#DCL" class="headerlink" title="DCL"></a>DCL</h4><p>数据库控制语言现阶段用得少，后面再补充</p>
-<h4 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h4><h5 id="普通SQL语句的执行："><a href="#普通SQL语句的执行：" class="headerlink" title="普通SQL语句的执行："></a>普通SQL语句的执行：</h5><ol>
-<li>客户端对SQL语句进行占位符替换的到完整的SQL语句</li>
-<li>将完整的SQL语句发送到mysql服务端</li>
-<li>mysql服务端执行SQL语句并返回结果</li>
-</ol>
-<h5 id="预处理的sql："><a href="#预处理的sql：" class="headerlink" title="预处理的sql："></a>预处理的sql：</h5><ol>
-<li>将SQL语句分为命令部分和数据部分</li>
-<li>先把命令部分发送给mysql服务端，mysql服务端进行SQL预处理</li>
-<li>然后把数据部分发送给mysql服务端进行占位符替换</li>
-<li>mysql执行完整的SQL语句并返回结果</li>
-</ol>
-<h5 id="预处理的好处："><a href="#预处理的好处：" class="headerlink" title="预处理的好处："></a>预处理的好处：</h5><ol>
-<li>优化mysql重复执行sql的方法，可以提升服务器性能，提前编译之后，可以多次执行</li>
-<li>可以避免SQL注入</li>
-</ol>
-<pre class=" language-go"><code class="language-go">
-        <span class="token keyword">var</span> sqlStr<span class="token operator">=</span><span class="token string">"select user_name from user where user_id&lt;3"</span>
-    statement<span class="token punctuation">,</span>err <span class="token operator">:=</span>db<span class="token punctuation">.</span><span class="token function">Prepare</span><span class="token punctuation">(</span>sqlStr<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> err<span class="token operator">!=</span><span class="token boolean">nil</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-    <span class="token keyword">defer</span> statement<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    rows<span class="token punctuation">,</span>err<span class="token operator">:=</span>statement<span class="token punctuation">.</span><span class="token function">Query</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">var</span> name <span class="token builtin">string</span>
-    <span class="token keyword">for</span> rows<span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        err<span class="token operator">:=</span>rows<span class="token punctuation">.</span><span class="token function">Scan</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>name<span class="token punctuation">)</span>
-        <span class="token keyword">if</span> err<span class="token operator">!=</span><span class="token boolean">nil</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span>
-    <span class="token punctuation">}</span>
-    rows<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
-<p>DML操作</p>
-<pre class=" language-go"><code class="language-go">
-    <span class="token keyword">var</span> sqlStr<span class="token operator">=</span><span class="token string">"delete from user where user_id=?"</span>
-    statement<span class="token punctuation">,</span>err <span class="token operator">:=</span>db<span class="token punctuation">.</span><span class="token function">Prepare</span><span class="token punctuation">(</span>sqlStr<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> err<span class="token operator">!=</span><span class="token boolean">nil</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-    <span class="token keyword">defer</span> statement<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    res<span class="token punctuation">,</span>err<span class="token operator">:=</span>statement<span class="token punctuation">.</span><span class="token function">Exec</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
-    rowNum<span class="token punctuation">,</span>err <span class="token operator">:=</span>res<span class="token punctuation">.</span><span class="token function">RowsAffected</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">if</span> err<span class="token operator">!=</span><span class="token boolean">nil</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"改变了%d行"</span><span class="token punctuation">,</span>rowNum<span class="token punctuation">)</span></code></pre>
+save 900 1
+save 300 10
+save 60 10000
+# 第一个数是时间，第二个是修改次数
+#比如save 60 10000就是60秒内修改了10000次触发</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -585,7 +508,7 @@ go: github.com/go-sql-driver/mysql upgrade =&gt; v1.5.0</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dylanddyf.github.io/2020/08/20/databaseSql/">https://dylanddyf.github.io/2020/08/20/databaseSql/</a>
+                    <a href="https://dylanddyf.github.io/2020/09/01/redis-config/">https://dylanddyf.github.io/2020/09/01/redis-config/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -623,16 +546,12 @@ go: github.com/go-sql-driver/mysql upgrade =&gt; v1.5.0</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                    <span class="chip bg-color">数据库</span>
+                                <a href="/tags/Redis/">
+                                    <span class="chip bg-color">Redis</span>
                                 </a>
                             
-                                <a href="/tags/go%E8%AF%AD%E8%A8%80/">
-                                    <span class="chip bg-color">go语言</span>
-                                </a>
-                            
-                                <a href="/tags/mysql/">
-                                    <span class="chip bg-color">mysql</span>
+                                <a href="/tags/Redis%E9%85%8D%E7%BD%AE/">
+                                    <span class="chip bg-color">Redis配置</span>
                                 </a>
                             
                         </div>
@@ -800,9 +719,10 @@ go: github.com/go-sql-driver/mysql upgrade =&gt; v1.5.0</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/09/01/redis-config/">
                     <div class="card-image">
@@ -822,9 +742,9 @@ go: github.com/go-sql-driver/mysql upgrade =&gt; v1.5.0</code></pre>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-01
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -833,6 +753,7 @@ go: github.com/go-sql-driver/mysql upgrade =&gt; v1.5.0</code></pre>
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -855,20 +776,21 @@ go: github.com/go-sql-driver/mysql upgrade =&gt; v1.5.0</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08/20/goPackage/">
+                <a href="/2020/08/20/databaseSql/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="go语言包管理">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="database/sql包">
                         
-                        <span class="card-title">go语言包管理</span>
+                        <span class="card-title">database/sql包</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言：在go语言中，有两种包管理方式gopath和go mod，导入自定义包和第三方包都需要准守一定的规则，并不是定义了包就能直接导入的。
-go modgo语言安装第三方包的时候，直接用go get命令大部分时候会因为墙的问题无法安装成功，
+                            database/sql包是go语言官方提供的sql连接和使用的包，用以操作SQL和类SQL数据库，但是官方没有提供驱动，需要自己手动安装
+安装mysql驱动包在终端输入以下命令,就能安装mysql的驱动包
+E:\code\go\src\d
                         
                     </div>
                     <div class="publish-info">
@@ -886,12 +808,16 @@ go modgo语言安装第三方包的时候，直接用go get命令大部分时候
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/go/">
-                        <span class="chip bg-color">go</span>
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
                     </a>
                     
-                    <a href="/tags/package/">
-                        <span class="chip bg-color">package</span>
+                    <a href="/tags/go%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">go语言</span>
+                    </a>
+                    
+                    <a href="/tags/mysql/">
+                        <span class="chip bg-color">mysql</span>
                     </a>
                     
                 </div>
