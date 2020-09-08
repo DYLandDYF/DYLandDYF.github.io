@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title>go_redis</title>
+      <link href="/2020/09/07/go-redis/"/>
+      <url>/2020/09/07/go-redis/</url>
+      
+        <content type="html"><![CDATA[<h4 id="下载连接redis的开源库"><a href="#下载连接redis的开源库" class="headerlink" title="下载连接redis的开源库"></a>下载连接redis的开源库</h4><p>在命令行输入go get github.com/go-redis/redis,结果如下</p><pre class=" language-shell"><code class="language-shell">E:\code\go\src\design>go get github.com/go-redis/redisgo: downloading github.com/go-redis/redis v6.15.9+incompatiblego: github.com/go-redis/redis upgrade => v6.15.9+incompatible</code></pre><h4 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h4><p>在代码中导入go-redis库</p><pre class=" language-go"><code class="language-go"><span class="token keyword">import</span> <span class="token string">"github.com/go-redis/redis"</span></code></pre><p>在代码中连接redis并进行测试</p><pre class=" language-go"><code class="language-go">    conf <span class="token operator">:=</span><span class="token function">new</span><span class="token punctuation">(</span>redis<span class="token punctuation">.</span>Options<span class="token punctuation">)</span>    conf<span class="token punctuation">.</span>Addr<span class="token operator">=</span><span class="token string">"101.37.xx.xx:6379"</span>    conf<span class="token punctuation">.</span>Password<span class="token operator">=</span><span class="token string">"xxxx"</span>    client <span class="token operator">:=</span>redis<span class="token punctuation">.</span><span class="token function">NewClient</span><span class="token punctuation">(</span>conf<span class="token punctuation">)</span>    pong<span class="token punctuation">,</span>err <span class="token operator">:=</span>client<span class="token punctuation">.</span><span class="token function">Ping</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Result</span><span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token keyword">if</span> err<span class="token operator">!=</span><span class="token boolean">nil</span><span class="token punctuation">{</span>    <span class="token punctuation">}</span>    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"连接成功，%v"</span><span class="token punctuation">,</span>pong<span class="token punctuation">)</span></code></pre><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 数据库 </tag>
+            
+            <tag> go语言 </tag>
+            
+            <tag> redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Redis配置</title>
       <link href="/2020/09/01/redis-config/"/>
       <url>/2020/09/01/redis-config/</url>
