@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title>RPC</title>
+      <link href="/2020/09/10/rpc/"/>
+      <url>/2020/09/10/rpc/</url>
+      
+        <content type="html"><![CDATA[<h4 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h4><p>RPC是远程过程调用（Remote Procedure Call）的缩写形式，是一种计算机通信协议，可以让不同主机上的不同程序实现通信和调用。</p><p><img src="../img/RPC1.jpg" alt=""></p><h5 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h5><p>不同编程语言的程序之间可以通信，使得各种业务可以使用最适合的语言进行处理</p><h4 id="IPC"><a href="#IPC" class="headerlink" title="IPC"></a>IPC</h4><p>采用微服务架构时，需要与其它服务通讯，这种通讯方式是进程之间的通信(Inter-Process Communication)</p><h5 id="IPC的实现"><a href="#IPC的实现" class="headerlink" title="IPC的实现"></a>IPC的实现</h5><p>IPC有两种实现</p><p>1 同步过程调用</p><ul><li>REST:REST基于http，实现容易，多语言支持</li><li>RPC:RPC的传输效率高，安全性可控，多用于系统内部调用</li></ul><p>2 异步消息调用</p><ul><li>Kafaka(常用框架)</li><li>Notify(常用框架)</li><li>MessageQueue(常用框架)</li></ul><p>同步过程调用比较简单，但是安全性和可靠性要差一些</p><p>异步消息调用在分布式中应用广泛，可以降低调用服务之间的耦合，还可以成为调用之间的缓冲。但是一致性会减弱，会有时延。还必须引入独立的broker作为中间代理池。</p><h4 id="RPC的实现步骤"><a href="#RPC的实现步骤" class="headerlink" title="RPC的实现步骤"></a>RPC的实现步骤</h4><ol><li>client调用client stub，这是一次本地调用过程</li><li>client stub将参数打包成一个消息，打包的过程称为marshalling</li><li>client所在的系统将消息发给server</li><li>server坐在的系统将受到的包传给server stub</li><li>server stub将受到的包解包，称为unmarshalling</li><li>server stub调用服务过程，返回结果按照相反的步骤传给client</li></ol><p>带来的新问题：</p><ol><li>Call ID映射</li><li>序列化与烦序列化</li><li>网络传输</li></ol><h4 id="Protobuf"><a href="#Protobuf" class="headerlink" title="Protobuf"></a>Protobuf</h4><p>Google的protocol buffer简称为Protobuf，是谷歌内部的混合语言数据标准，主要用于RPC系统和持续数据存储系统。</p><h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ol><li>性能好效率高</li><li>代码生成机制</li><li>支持向前兼容和向后兼容</li><li>多语言支持</li></ol><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> go语言 </tag>
+            
+            <tag> 微服务 </tag>
+            
+            <tag> RPC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>NSQ</title>
       <link href="/2020/09/09/NSQ/"/>
       <url>/2020/09/09/NSQ/</url>
