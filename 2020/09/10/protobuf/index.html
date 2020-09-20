@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="架构, goder">
+    <meta name="keywords" content="protobuf, goder">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>架构 | goder</title>
+    <title>protobuf | goder</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">架构</h1>
+                    <h1 class="description center-align post-title">protobuf</h1>
                 </div>
             </div>
         </div>
@@ -408,8 +408,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%9E%B6%E6%9E%84/">
-                                <span class="chip bg-color">架构</span>
+                            <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                                <span class="chip bg-color">微服务</span>
+                            </a>
+                        
+                            <a href="/tags/RPC/">
+                                <span class="chip bg-color">RPC</span>
+                            </a>
+                        
+                            <a href="/tags/protobuf/">
+                                <span class="chip bg-color">protobuf</span>
                             </a>
                         
                     </div>
@@ -424,7 +432,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-08
+                    2020-09-10
                 </div>
                 
 
@@ -440,61 +448,60 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>互联网架构演进是十分迅速的，为了应对越来越高的要求，不断诞生新的理论和架构，下图就是主流的架构演变历史<br><img src="../img/architecture.jpg" alt=""></p>
-<h4 id="单体架构"><a href="#单体架构" class="headerlink" title="单体架构"></a>单体架构</h4><p>单体架构是最早期的架构，将数据库、服务器处理、前端展示这些部分集成在一个应用中的（系统中所有的功能、模块耦合在一个应用中的架构方式），就算是单体架构。mvc结构就是典型的单体架构。</p>
-<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ol>
-<li>开发效率高，项目易于管理</li>
-<li>所有功能耦合在一起，部署简单</li>
-</ol>
-<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ol>
-<li>所有功能打包在一个应用中，服务器压力较大，容受制于服务器的性能瓶颈</li>
-<li>服务器挂掉，所有功能都无法使用</li>
-<li>代码会越来越臃肿，管理成本不断增加</li>
-</ol>
-<h4 id="水平分层架构"><a href="#水平分层架构" class="headerlink" title="水平分层架构"></a>水平分层架构</h4><p>单体架构进行水平拆分，就形成了水平分层架构。可拆分为网关层、业务层、数据层。</p>
-<h5 id="网关层"><a href="#网关层" class="headerlink" title="网关层"></a>网关层</h5><p>网关层主要有以下作用</p>
-<ol>
-<li>请求鉴权</li>
-<li>数据完整性检查</li>
-<li>协议转换</li>
-<li>路由转发</li>
-<li>服务治理</li>
-</ol>
-<h5 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h5><p>分层结构的优点：</p>
-<ol>
-<li>分离开发人员的关注</li>
-<li>降低了系统间的依赖</li>
-<li>可以无损替换</li>
-<li>易于复用</li>
-</ol>
-<h5 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h5><p>分层架构有以下的缺点：</p>
-<ol>
-<li>分层会带来性能的损失</li>
-<li>联级修改问题</li>
-<li>不适合API频繁变动的业务</li>
-</ol>
-<h4 id="SOA架构"><a href="#SOA架构" class="headerlink" title="SOA架构"></a>SOA架构</h4><p>SOA架构全称 Service Oriented Architecture(面向服务架构)即从垂直方向上进行拆分</p>
-<h5 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h5><ol>
-<li>降低用户成本</li>
-<li>程序之间关系服务简单</li>
-</ol>
-<h5 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h5><ol>
-<li>系统复杂度增加</li>
-<li>性能有影响</li>
-</ol>
-<h4 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h4><p>微服务架构风格是一个系统，由一套独立运行的微服务组成， 这些服务是围绕业务功能构建的，服务关注单一业务，服务间采用轻量级的通信机制（通常是HTTP资源的API），可以全自动独立部署，可以使用不同的编程语言和数据存储技术。</p>
-<h5 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h5><ol>
-<li>伸缩性和扩展性比较高</li>
-<li>部署和维护成本变低</li>
-<li>有效解耦</li>
-</ol>
-<h5 id="缺点-3"><a href="#缺点-3" class="headerlink" title="缺点"></a>缺点</h5><ol>
-<li>服务之间的隔离会造成数据孤岛问题</li>
-<li>团队沟通的过载</li>
-<li>DevOps的复杂度</li>
-<li>增加了资源使用</li>
-</ol>
-<p>微服务需要有zookeeper这种框架来管理服务。</p>
+                <p>go语言中使用protobuf需要有相应的环境。</p>
+<h4 id="1-安装protobuf编译器"><a href="#1-安装protobuf编译器" class="headerlink" title="1.安装protobuf编译器"></a>1.安装protobuf编译器</h4><p>在protobuf的Git主页上，下载相应的release版本,解压即可使用</p>
+<h4 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2.配置环境变量"></a>2.配置环境变量</h4><p>将protobuf的bin目录添加到path中即可</p>
+<h4 id="3-下载protobuf-gen-go库"><a href="#3-下载protobuf-gen-go库" class="headerlink" title="3.下载protobuf-gen-go库"></a>3.下载protobuf-gen-go库</h4><p>执行以下命令：</p>
+<pre class=" language-shell"><code class="language-shell">go get github.com/golang/protobuf/protoc-gen-go
+go get google.golang.org/protobuf/proto
+go install google.golang.org/protobuf/cmd/protoc-gen-go</code></pre>
+<h4 id="Protobuf协议语法"><a href="#Protobuf协议语法" class="headerlink" title="Protobuf协议语法"></a>Protobuf协议语法</h4><ul>
+<li>文件以.proto为扩展名</li>
+<li>message定义一个消息</li>
+<li>用enum定义一个枚举</li>
+<li>以syntax = “proto2”;的形式声明使用的版本</li>
+<li>以”;”来结尾</li>
+<li>以//和/**/注释</li>
+<li>字段修饰符有三种:required、optional、 repeated</li>
+<li>以package关键字打包</li>
+<li>以import “XXX.proto”的方式</li>
+<li>数据类型跟go类似</li>
+<li>每个字段都需要分配标识符(相当于顺序)，标识符不可以取19000-19999之间(已经被预留)，最大是536870911<pre class=" language-protobuf"><code class="language-protobuf">syntax <span class="token operator">=</span> <span class="token string">"proto2"</span><span class="token punctuation">;</span>
+<span class="token keyword">package</span> test<span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">"hello.proto"</span><span class="token punctuation">;</span>
+<span class="token keyword">message</span> Order<span class="token punctuation">{</span>
+<span class="token builtin">required</span> <span class="token primitive symbol">int32</span> order_id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token builtin">required</span> <span class="token primitive symbol">int32</span> order_number <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token builtin">required</span> <span class="token primitive symbol">string</span> timestamp <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+等号后面的数字是指序列化时的顺序，而不是赋值。</li>
+</ul>
+<p>required表示是必须要包含的，optional表示可选的，传输时可包含可不包含,repeated这种字段可以重复任意多次，重复的值的顺序会被保留。</p>
+<p>编译.proto文件时，在命令行输入以下命令：</p>
+<pre class=" language-shell"><code class="language-shell">protoc --go_out=. te.proto</code></pre>
+<p>go语言的一个小demo</p>
+<pre class=" language-shell"><code class="language-shell">package main
+
+import (
+    "fmt"
+    "google.golang.org/protobuf/proto"
+
+    "design/test"
+)
+
+
+func main(){
+    order :=test.Order{
+        OrderId:     1,
+        OrderNumber: 2,
+        Timestamp:   "2020/9/11",
+    }
+    oederEnty,_:=proto.Marshal(&amp;order)
+    o1 :=&amp;test.Order{}
+    proto.Unmarshal(oederEnty,o1)
+    fmt.Println(o1)
+}
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -538,7 +545,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dylanddyf.github.io/2020/09/08/architecture/">https://dylanddyf.github.io/2020/09/08/architecture/</a>
+                    <a href="https://dylanddyf.github.io/2020/09/10/protobuf/">https://dylanddyf.github.io/2020/09/10/protobuf/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -576,8 +583,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%9E%B6%E6%9E%84/">
-                                    <span class="chip bg-color">架构</span>
+                                <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                                    <span class="chip bg-color">微服务</span>
+                                </a>
+                            
+                                <a href="/tags/RPC/">
+                                    <span class="chip bg-color">RPC</span>
+                                </a>
+                            
+                                <a href="/tags/protobuf/">
+                                    <span class="chip bg-color">protobuf</span>
                                 </a>
                             
                         </div>
@@ -749,28 +764,24 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/09/09/NSQ/">
+                <a href="/2020/09/17/httpmethed/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="NSQ">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="HTTP协议补漏">
                         
-                        <span class="card-title">NSQ</span>
+                        <span class="card-title">HTTP协议补漏</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            NSQ是一个高性能的用go语言实现的开源消息队列。
-NSQ特性
-消息默认不持久化，想要进行持久化需要自己进行配置，采用的内存加硬盘模式，内存中的数据量达到一定程度时就会持久化到硬盘中
-
-将 –mem-queue-size设置为0时，所有消息
+                            http协议HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是用于从万维网服务器传输超文本到本地浏览器的传送协议。HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件,
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-09
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-17
                         </span>
                         <span class="publish-author">
                             
@@ -783,12 +794,12 @@ NSQ特性
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/NSQ/">
-                        <span class="chip bg-color">NSQ</span>
+                    <a href="/tags/web/">
+                        <span class="chip bg-color">web</span>
                     </a>
                     
-                    <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
-                        <span class="chip bg-color">消息队列</span>
+                    <a href="/tags/http/">
+                        <span class="chip bg-color">http</span>
                     </a>
                     
                 </div>
@@ -802,26 +813,27 @@ NSQ特性
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/07/go-redis/">
+                <a href="/2020/09/10/rpc/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="go_redis">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="RPC">
                         
-                        <span class="card-title">go_redis</span>
+                        <span class="card-title">RPC</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            下载连接redis的开源库在命令行输入go get github.com/go-redis/redis,结果如下
-E:\code\go\src\design>go get github.com/go-redis/redis
-go: down
+                            RPCRPC是远程过程调用（Remote Procedure Call）的缩写形式，是一种计算机通信协议，可以让不同主机上的不同程序实现通信和调用。
+
+好处不同编程语言的程序之间可以通信，使得各种业务可以使用最适合的语言进行处理
+IPC采用
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-10
                             </span>
                         <span class="publish-author">
                             
@@ -834,16 +846,16 @@ go: down
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                        <span class="chip bg-color">数据库</span>
-                    </a>
-                    
                     <a href="/tags/go%E8%AF%AD%E8%A8%80/">
                         <span class="chip bg-color">go语言</span>
                     </a>
                     
-                    <a href="/tags/redis/">
-                        <span class="chip bg-color">redis</span>
+                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                        <span class="chip bg-color">微服务</span>
+                    </a>
+                    
+                    <a href="/tags/RPC/">
+                        <span class="chip bg-color">RPC</span>
                     </a>
                     
                 </div>
