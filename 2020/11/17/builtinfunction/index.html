@@ -560,8 +560,14 @@ main<span class="token punctuation">.</span><span class="token function">main</s
   <span class="token comment" spellcheck="true">//输出</span>
   <span class="token number">1</span></code></pre>
 </li>
-<li><p>测chanel</p>
-<pre class=" language-go"><code class="language-go"></code></pre>
+<li><p>测chanel:返回值是chanel元素个数</p>
+<pre class=" language-go"><code class="language-go">  <span class="token keyword">var</span> temp <span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token operator">=</span><span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span>
+  temp<span class="token operator">&lt;-</span><span class="token number">1</span>
+  temp<span class="token operator">&lt;-</span><span class="token number">2</span>
+  temp<span class="token operator">&lt;-</span><span class="token number">3</span>
+  temp<span class="token operator">&lt;-</span><span class="token number">4</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">len</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token comment" spellcheck="true">//输出4，元素有四个，而不是输出容量8</span></code></pre>
 </li>
 </ul>
 <h4 id="cap"><a href="#cap" class="headerlink" title="cap()"></a>cap()</h4><p>cap()函数是用来测数组、切片、chanel的长度的</p>
@@ -573,7 +579,13 @@ main<span class="token punctuation">.</span><span class="token function">main</s
   fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">cap</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">)</span>
   <span class="token comment" spellcheck="true">//输出10</span></code></pre>
 </li>
-<li>测chanel：</li>
+<li>测chanel：返回chanel容量<pre class=" language-go"><code class="language-go">  <span class="token keyword">var</span> temp <span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token operator">=</span><span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span>
+  temp<span class="token operator">&lt;-</span><span class="token number">1</span>
+  temp<span class="token operator">&lt;-</span><span class="token number">2</span>
+  temp<span class="token operator">&lt;-</span><span class="token number">3</span>
+  temp<span class="token operator">&lt;-</span><span class="token number">4</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">cap</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+</li>
 </ul>
 <h4 id="append"><a href="#append" class="headerlink" title="append()"></a>append()</h4><p>append()函数主要是用来给slice添加元素的，也可以给字符串添加元素(需要先将元素转为byte数组)</p>
 <ul>
