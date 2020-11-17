@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="HTTP协议补漏, goder">
+    <meta name="keywords" content="mysql基础强化, goder">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>HTTP协议补漏 | goder</title>
+    <title>mysql基础强化 | goder</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">HTTP协议补漏</h1>
+                    <h1 class="description center-align post-title">mysql基础强化</h1>
                 </div>
             </div>
         </div>
@@ -408,12 +408,24 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/web/">
-                                <span class="chip bg-color">web</span>
+                            <a href="/tags/%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0/">
+                                <span class="chip bg-color">聚合函数</span>
                             </a>
                         
-                            <a href="/tags/http/">
-                                <span class="chip bg-color">http</span>
+                            <a href="/tags/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/">
+                                <span class="chip bg-color">存储过程</span>
+                            </a>
+                        
+                            <a href="/tags/%E4%BA%8B%E5%8A%A1/">
+                                <span class="chip bg-color">事务</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%B4%A2%E5%BC%95/">
+                                <span class="chip bg-color">索引</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%A7%86%E5%9B%BE/">
+                                <span class="chip bg-color">视图</span>
                             </a>
                         
                     </div>
@@ -428,7 +440,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-17
+                    2020-09-20
                 </div>
                 
 
@@ -444,18 +456,58 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="http协议"><a href="#http协议" class="headerlink" title="http协议"></a>http协议</h4><p>HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是用于从万维网服务器传输超文本到本地浏览器的传送协议。HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）</p>
-<h4 id="http请求报文的结构"><a href="#http请求报文的结构" class="headerlink" title="http请求报文的结构"></a>http请求报文的结构</h4><p>一个HTTP请求包含了请求行、请求头、空行、请求数据(GET等不携带信息的请求没有这部分)四部分组成<br><img src="../img/httpstruct.jpg" alt=""></p>
-<h4 id="HTTP响应报文的结构"><a href="#HTTP响应报文的结构" class="headerlink" title="HTTP响应报文的结构"></a>HTTP响应报文的结构</h4><p>一个HTTP响应报文，由首行、响应头、空行、响应体组成，</p>
-<h4 id="http请求方法"><a href="#http请求方法" class="headerlink" title="http请求方法"></a>http请求方法</h4><p>http协议共有9种请求方式，在http 1.0中只有GET、POST、HEAD这三种请求方法，在HTTP 1.1中有增加了6种，共有9种而不是目前众多博客上所称的8种，个人验证之后确实是9种。</p>
-<p><img src="../img/httprequest.jpg" alt=""><br>(图片来源于菜鸟教程)</p>
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="HTTP常见的状态码"><a href="#HTTP常见的状态码" class="headerlink" title="HTTP常见的状态码"></a>HTTP常见的状态码</h4><ul>
-<li>200:请求成功</li>
-<li>300:请求重定向</li>
-<li>404:资源不存在</li>
-<li>500:服务器出错<br><img src="../img/HTTPstaus.jpg" alt=""></li>
+                <p>声明：此博客很大一部分摘抄自<a href="https://www.runoob.com/，做此总结是为了应对面试以及补全基础所用" target="_blank" rel="noopener">https://www.runoob.com/，做此总结是为了应对面试以及补全基础所用</a></p>
+<h4 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h4><p>常见的有5种。</p>
+<ul>
+<li>count()：按规则统计列的数量</li>
+<li>sum():按规则求和</li>
+<li>min():求最小值</li>
+<li>max():求最大值</li>
+<li>avg():统计平均值</li>
 </ul>
-<script>
+<p>不是特别常见的聚合函数(面试可能问到)</p>
+<ul>
+<li>last():返回指定的列中最后一个记录的值</li>
+<li>len():返回文本字段中值的长度</li>
+<li>now():返回当前系统的日期和时间</li>
+<li>mid():用于从文本字段中提取字符 </li>
+</ul>
+<p>其它聚合函数还要很多</p>
+<h4 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h4><h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><p>MySQL 事务主要用于处理操作量大，复杂度高的数据。比如说，在人员管理系统中，你删除一个人员，你既需要删除人员的基本资料，也要删除和该人员相关的信息，如信箱，文章等等，这样，这些数据库操作语句就构成一个事务！</p>
+<p>事务有以下几种特性(简称ACID)：</p>
+<ul>
+<li><p>原子性(A-Atomicity)：一个事务（transaction）中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。</p>
+</li>
+<li><p>一致性(C-Consistency)：在事务开始之前和事务结束以后，数据库的完整性没有被破坏。这表示写入的资料必须完全符合所有的预设规则，这包含资料的精确度、串联性以及后续数据库可以自发性地完成预定的工作。</p>
+</li>
+<li><p>隔离性(I-Isolation)：数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。事务隔离分为不同级别，包括读未提交（Read uncommitted）、读提交（read committed）、可重复读（repeatable read）和串行化（Serializable）。</p>
+</li>
+<li><p>持久性(D-Durability)：事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。</p>
+</li>
+</ul>
+<p>数据库中事务的作用：</p>
+<ol>
+<li>在 MySQL 中只有使用了 Innodb 数据库引擎的数据库或表才支持事务。</li>
+<li>事务处理可以用来维护数据库的完整性，保证成批的 SQL 语句要么全部执行，要么全部不执行。</li>
+<li>事务用来管理 insert,update,delete 语句</li>
+</ol>
+<p>MYSQL 事务处理主要有两种方法：</p>
+<ol>
+<li><p>用 BEGIN, ROLLBACK, COMMIT来实现</p>
+<p> BEGIN 开始一个事务</p>
+<p> ROLLBACK 事务回滚</p>
+<p> COMMIT 事务确认</p>
+</li>
+<li><p>直接用 SET 来改变 MySQL 的自动提交模式:</p>
+<p> SET AUTOCOMMIT=0 禁止自动提交</p>
+<p> SET AUTOCOMMIT=1 开启自动提交</p>
+<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4></li>
+</ol>
+<p>索引可以大大提高MySQL的检索速度。索引分单列索引和组合索引。单列索引，即一个索引只包含单个列，一个表可以有多个单列索引，但这不是组合索引。组合索引，即一个索引包含多个列</p>
+<p>创建索引时，你需要确保该索引是应用在 SQL 查询语句的条件(一般作为 WHERE 子句的条件)。</p>
+<p>实际上，索引也是一张表，该表保存了主键与索引字段，并指向实体表的记录。同时却会降低更新表的速度，如对表进行INSERT、UPDATE和DELETE。因为更新表时，MySQL不仅要保存数据，还要保存一下索引文件。<br>                                   建立索引会占用磁盘空间的索引文件。</p>
+<p>索引失效问题</p>
+<h4 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h4><h4 id="mysql-集群-占位-以后更新"><a href="#mysql-集群-占位-以后更新" class="headerlink" title="mysql-集群 占位(以后更新)"></a>mysql-集群 占位(以后更新)</h4><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -498,7 +550,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dylanddyf.github.io/2020/09/17/httpmethed/">https://dylanddyf.github.io/2020/09/17/httpmethed/</a>
+                    <a href="https://dylanddyf.github.io/2020/09/20/mysql/">https://dylanddyf.github.io/2020/09/20/mysql/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -536,12 +588,24 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/web/">
-                                    <span class="chip bg-color">web</span>
+                                <a href="/tags/%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0/">
+                                    <span class="chip bg-color">聚合函数</span>
                                 </a>
                             
-                                <a href="/tags/http/">
-                                    <span class="chip bg-color">http</span>
+                                <a href="/tags/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/">
+                                    <span class="chip bg-color">存储过程</span>
+                                </a>
+                            
+                                <a href="/tags/%E4%BA%8B%E5%8A%A1/">
+                                    <span class="chip bg-color">事务</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%B4%A2%E5%BC%95/">
+                                    <span class="chip bg-color">索引</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%A7%86%E5%9B%BE/">
+                                    <span class="chip bg-color">视图</span>
                                 </a>
                             
                         </div>
@@ -713,30 +777,29 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/09/20/mysql/">
+                <a href="/2020/11/17/builtinfunction/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="mysql基础强化">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="golang内建函数">
                         
-                        <span class="card-title">mysql基础强化</span>
+                        <span class="card-title">golang内建函数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            声明：此博客很大一部分摘抄自https://www.runoob.com/，做此总结是为了应对面试以及补全基础所用
-聚合函数常见的有5种。
+                            在go语言中，有不少内建函数，本篇文章主要是梳理go语言中的几个常用的内建函数的使用场景和各个函数之间的区别。
+make()make函数可以分配内存，但是只能适用于切片slice、hash表map、信道chanel
 
-count()：按规则统计列的数量
-sum():按规则求和
-min():求最小值
-max():求最
+创建切片：
+
+参数：类
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-20
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-17
                         </span>
                         <span class="publish-author">
                             
@@ -749,24 +812,12 @@ max():求最
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0/">
-                        <span class="chip bg-color">聚合函数</span>
+                    <a href="/tags/golang/">
+                        <span class="chip bg-color">golang</span>
                     </a>
                     
-                    <a href="/tags/%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/">
-                        <span class="chip bg-color">存储过程</span>
-                    </a>
-                    
-                    <a href="/tags/%E4%BA%8B%E5%8A%A1/">
-                        <span class="chip bg-color">事务</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%B4%A2%E5%BC%95/">
-                        <span class="chip bg-color">索引</span>
-                    </a>
-                    
-                    <a href="/tags/%E8%A7%86%E5%9B%BE/">
-                        <span class="chip bg-color">视图</span>
+                    <a href="/tags/%E5%87%BD%E6%95%B0/">
+                        <span class="chip bg-color">函数</span>
                     </a>
                     
                 </div>
@@ -780,27 +831,24 @@ max():求最
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/10/protobuf/">
+                <a href="/2020/09/17/httpmethed/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="protobuf">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="HTTP协议补漏">
                         
-                        <span class="card-title">protobuf</span>
+                        <span class="card-title">HTTP协议补漏</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            go语言中使用protobuf需要有相应的环境。
-1.安装protobuf编译器在protobuf的Git主页上，下载相应的release版本,解压即可使用
-2.配置环境变量将protobuf的bin目录添加到path中即可
-3.下载pro
+                            http协议HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是用于从万维网服务器传输超文本到本地浏览器的传送协议。HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件,
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-17
                             </span>
                         <span class="publish-author">
                             
@@ -813,16 +861,12 @@ max():求最
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
-                        <span class="chip bg-color">微服务</span>
+                    <a href="/tags/web/">
+                        <span class="chip bg-color">web</span>
                     </a>
                     
-                    <a href="/tags/RPC/">
-                        <span class="chip bg-color">RPC</span>
-                    </a>
-                    
-                    <a href="/tags/protobuf/">
-                        <span class="chip bg-color">protobuf</span>
+                    <a href="/tags/http/">
+                        <span class="chip bg-color">http</span>
                     </a>
                     
                 </div>

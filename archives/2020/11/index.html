@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="归档, goder">
+    <meta name="keywords" content="归档: 2020/11, goder">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>归档 | goder</title>
+    <title>归档: 2020/11 | goder</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -430,36 +430,40 @@
             
             
             <div class="cd-timeline-img month" data-aos="zoom-in-up">
-                <a href="/archives/2020/08">08</a>
+                <a href="/archives/2020/11">11</a>
             </div>
             
 
             
             <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>20</span>
+                <span>17</span>
             </div>
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2020/08/20/goPackage/">
+                        <a href="/2020/11/17/builtinfunction/">
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="go语言包管理">
+                                <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="golang内建函数">
                                 
-                                <span class="card-title">go语言包管理</span>
+                                <span class="card-title">golang内建函数</span>
                             </div>
                         </a>
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    前言：在go语言中，有两种包管理方式gopath和go mod，导入自定义包和第三方包都需要准守一定的规则，并不是定义了包就能直接导入的。
-go modgo语言安装第三方包的时候，直接用go get命令大部分时候会因为墙的问题无法安装成功，
+                                    在go语言中，有不少内建函数，本篇文章主要是梳理go语言中的几个常用的内建函数的使用场景和各个函数之间的区别。
+make()make函数可以分配内存，但是只能适用于切片slice、hash表map、信道chanel
+
+创建切片：
+
+参数：类
                                 
                             </div>
                             <div class="publish-info">
                                 <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2020-08-20
+                                    <i class="far fa-clock fa-fw icon-date"></i>2020-11-17
                                 </span>
                                 <span class="publish-author">
                                     
@@ -473,499 +477,11 @@ go modgo语言安装第三方包的时候，直接用go get命令大部分时候
                         
                         <div class="card-action article-tags">
                             
-                            <a href="/tags/go/"><span class="chip bg-color">go</span></a>
+                            <a href="/tags/golang/"><span class="chip bg-color">golang</span></a>
                             
-                            <a href="/tags/package/"><span class="chip bg-color">package</span></a>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </article>
-        </div>
-        
-        <div class="cd-timeline-block">
-
-            
-            
-
-            
-            
-
-            
-            <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>19</span>
-            </div>
-            <article class="cd-timeline-content" data-aos="fade-up">
-                <div class="article col s12 m6">
-                    <div class="card">
-                        <a href="/2020/08/19/DesignPattern/">
-                            <div class="card-image">
-                                
-                                
-                                <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="单例模式">
-                                
-                                <span class="card-title">单例模式</span>
-                            </div>
-                        </a>
-                        <div class="card-content article-content">
-                            <div class="summary block-with-text">
-                                
-                                    单例模式所谓单例，就是整个程序有且仅有一个实例，go语言实现单例模式有懒汉式、饿汉式、双重检查、sync.Once这几种方法
-懒汉式在需要用到时才创建实例，但不是线程安全的，在多线程（协程）模式时可以被创建多个实例
-type person 
-                                
-                            </div>
-                            <div class="publish-info">
-                                <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2020-08-19
-                                </span>
-                                <span class="publish-author">
-                                    
-                                    <i class="fas fa-user fa-fw"></i>
-                                    DYL
-                                    
-                                </span>
-                            </div>
-                        </div>
-
-                        
-                        <div class="card-action article-tags">
-                            
-                            <a href="/tags/go%E8%AF%AD%E8%A8%80/"><span class="chip bg-color">go语言</span></a>
-                            
-                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="chip bg-color">设计模式</span></a>
+                            <a href="/tags/%E5%87%BD%E6%95%B0/"><span class="chip bg-color">函数</span></a>
                             
                         </div>
-                        
-                    </div>
-                </div>
-            </article>
-        </div>
-        
-        <div class="cd-timeline-block">
-
-            
-            
-
-            
-            
-
-            
-            <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>15</span>
-            </div>
-            <article class="cd-timeline-content" data-aos="fade-up">
-                <div class="article col s12 m6">
-                    <div class="card">
-                        <a href="/2020/08/15/dockerNote/">
-                            <div class="card-image">
-                                
-                                
-                                <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="docker笔记">
-                                
-                                <span class="card-title">docker笔记</span>
-                            </div>
-                        </a>
-                        <div class="card-content article-content">
-                            <div class="summary block-with-text">
-                                
-                                    Docker简介是一个开源的应用容器引擎，解决了部署环境配置麻烦的问题，可以让部署变得简单高效。
-容器技术有效的将单个操作系统的资源划分到孤立的组中，以便更好的在孤立的组之间平衡有冲突的资源使用需求，这种技术就是容器技术。
-容器话技术不是模
-                                
-                            </div>
-                            <div class="publish-info">
-                                <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2020-08-15
-                                </span>
-                                <span class="publish-author">
-                                    
-                                    <i class="fas fa-user fa-fw"></i>
-                                    DYL
-                                    
-                                </span>
-                            </div>
-                        </div>
-
-                        
-                        <div class="card-action article-tags">
-                            
-                            <a href="/tags/docker/"><span class="chip bg-color">docker</span></a>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </article>
-        </div>
-        
-        <div class="cd-timeline-block">
-
-            
-            
-
-            
-            
-
-            
-            <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>14</span>
-            </div>
-            <article class="cd-timeline-content" data-aos="fade-up">
-                <div class="article col s12 m6">
-                    <div class="card">
-                        <a href="/2020/08/14/go-web/">
-                            <div class="card-image">
-                                
-                                
-                                <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="go语言">
-                                
-                                <span class="card-title">go语言</span>
-                            </div>
-                        </a>
-                        <div class="card-content article-content">
-                            <div class="summary block-with-text">
-                                
-                                    简易服务net/http包是go语言自带的一个包，使用这个包可以极为方便地搭建一个web后台,也可以使用这个包来发送各种请求，编写爬虫。
-后台想要接收和识别浏览器发过来的http请求，需要实现一个函数，这个函数的参数为(w http.Res
-                                
-                            </div>
-                            <div class="publish-info">
-                                <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2020-08-14
-                                </span>
-                                <span class="publish-author">
-                                    
-                                    <i class="fas fa-user fa-fw"></i>
-                                    DYL
-                                    
-                                </span>
-                            </div>
-                        </div>
-
-                        
-                        <div class="card-action article-tags">
-                            
-                            <a href="/tags/go%E8%AF%AD%E8%A8%80/"><span class="chip bg-color">go语言</span></a>
-                            
-                            <a href="/tags/net-http%E5%8C%85/"><span class="chip bg-color">net/http包</span></a>
-                            
-                            <a href="/tags/web/"><span class="chip bg-color">web</span></a>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </article>
-        </div>
-        
-        <div class="cd-timeline-block">
-
-            
-            
-
-            
-            
-
-            
-            <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>10</span>
-            </div>
-            <article class="cd-timeline-content" data-aos="fade-up">
-                <div class="article col s12 m6">
-                    <div class="card">
-                        <a href="/2020/08/10/redisNote/">
-                            <div class="card-image">
-                                
-                                
-                                <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="redis笔记">
-                                
-                                <span class="card-title">redis笔记</span>
-                            </div>
-                        </a>
-                        <div class="card-content article-content">
-                            <div class="summary block-with-text">
-                                
-                                    NoSQL概念
-NoSQL：not only SQL，泛指非关系型数据库
-常见分类：键值对存储数据库、列存储数据库、文档存储数据库、图形数据库
-优点：1.方便扩展（数据之间没有关系，好扩展） 2.大数据量高性能 3.数据类型多样（不需要设计
-                                
-                            </div>
-                            <div class="publish-info">
-                                <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2020-08-10
-                                </span>
-                                <span class="publish-author">
-                                    
-                                    <i class="fas fa-user fa-fw"></i>
-                                    DYL
-                                    
-                                </span>
-                            </div>
-                        </div>
-
-                        
-                        <div class="card-action article-tags">
-                            
-                            <a href="/tags/Redis/"><span class="chip bg-color">Redis</span></a>
-                            
-                            <a href="/tags/NoSQL/"><span class="chip bg-color">NoSQL</span></a>
-                            
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="chip bg-color">数据库</span></a>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </article>
-        </div>
-        
-        <div class="cd-timeline-block">
-
-            
-            
-
-            
-            
-            
-            <div class="cd-timeline-img month" data-aos="zoom-in-up">
-                <a href="/archives/2020/07">07</a>
-            </div>
-            
-
-            
-            <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>23</span>
-            </div>
-            <article class="cd-timeline-content" data-aos="fade-up">
-                <div class="article col s12 m6">
-                    <div class="card">
-                        <a href="/2020/07/23/redblacktree/">
-                            <div class="card-image">
-                                
-                                
-                                <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="红黑树">
-                                
-                                <span class="card-title">红黑树</span>
-                            </div>
-                        </a>
-                        <div class="card-content article-content">
-                            <div class="summary block-with-text">
-                                
-                                    红黑树定义：红黑树是一种含有红黑结点并能自平衡的二叉查找树。它必须满足下面性质：
-
-每个节点要么是黑色，要么是红色。
-根节点是黑色。
-每个叶子节点（NIL）是黑色。
-每个红色结点的两个子结点一定都是黑色（红黑树不会出现相邻的红色节点）
-任意
-                                
-                            </div>
-                            <div class="publish-info">
-                                <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2020-07-23
-                                </span>
-                                <span class="publish-author">
-                                    
-                                    <i class="fas fa-user fa-fw"></i>
-                                    DYL
-                                    
-                                </span>
-                            </div>
-                        </div>
-
-                        
-                        <div class="card-action article-tags">
-                            
-                            <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"><span class="chip bg-color">二叉树</span></a>
-                            
-                            <a href="/tags/%E6%9F%A5%E6%89%BE/"><span class="chip bg-color">查找</span></a>
-                            
-                            <a href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/"><span class="chip bg-color">红黑树</span></a>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </article>
-        </div>
-        
-        <div class="cd-timeline-block">
-
-            
-            
-
-            
-            
-
-            
-            <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>16</span>
-            </div>
-            <article class="cd-timeline-content" data-aos="fade-up">
-                <div class="article col s12 m6">
-                    <div class="card">
-                        <a href="/2020/07/16/tree/">
-                            <div class="card-image">
-                                
-                                
-                                <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="树">
-                                
-                                <span class="card-title">树</span>
-                            </div>
-                        </a>
-                        <div class="card-content article-content">
-                            <div class="summary block-with-text">
-                                
-                                    树的介绍树是节点按分支关系组成的一种结构，具有插入和删除效率高的优点，但是查找效率较低，二叉树不是树的特例（即二叉树不是树）
-常见二叉树分类
-普通二叉树
-完全二叉树
-满二叉树
-线索二叉树
-哈夫曼树
-二叉排序树
-平衡二叉树（AVL）
-红黑树
-
-                                
-                            </div>
-                            <div class="publish-info">
-                                <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2020-07-16
-                                </span>
-                                <span class="publish-author">
-                                    
-                                    <i class="fas fa-user fa-fw"></i>
-                                    DYL
-                                    
-                                </span>
-                            </div>
-                        </div>
-
-                        
-                        <div class="card-action article-tags">
-                            
-                            <a href="/tags/%E7%AE%97%E6%B3%95/"><span class="chip bg-color">算法</span></a>
-                            
-                            <a href="/tags/%E6%A0%91/"><span class="chip bg-color">树</span></a>
-                            
-                            <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"><span class="chip bg-color">二叉树</span></a>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </article>
-        </div>
-        
-        <div class="cd-timeline-block">
-
-            
-            
-
-            
-            
-
-            
-            <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>15</span>
-            </div>
-            <article class="cd-timeline-content" data-aos="fade-up">
-                <div class="article col s12 m6">
-                    <div class="card">
-                        <a href="/2020/07/15/sort/">
-                            <div class="card-image">
-                                
-                                
-                                <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="排序">
-                                
-                                <span class="card-title">排序</span>
-                            </div>
-                        </a>
-                        <div class="card-content article-content">
-                            <div class="summary block-with-text">
-                                
-                                    选择排序思想：将数组分为已排序和未排序两部分，每次从未排序部分选出最小的数放入已排序部分
-图解
-步骤
-记上待排序部分的第一个数字的索引min
-对待排序部分遍历，如果有比第nums[min]小的，将索引值赋min
-将待排序部分首元素与nums
-                                
-                            </div>
-                            <div class="publish-info">
-                                <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2020-07-15
-                                </span>
-                                <span class="publish-author">
-                                    
-                                    <i class="fas fa-user fa-fw"></i>
-                                    DYL
-                                    
-                                </span>
-                            </div>
-                        </div>
-
-                        
-                        <div class="card-action article-tags">
-                            
-                            <a href="/tags/%E6%8E%92%E5%BA%8F/"><span class="chip bg-color">排序</span></a>
-                            
-                            <a href="/tags/%E7%AE%97%E6%B3%95/"><span class="chip bg-color">算法</span></a>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </article>
-        </div>
-        
-        <div class="cd-timeline-block">
-
-            
-            
-
-            
-            
-
-            
-            <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>04</span>
-            </div>
-            <article class="cd-timeline-content" data-aos="fade-up">
-                <div class="article col s12 m6">
-                    <div class="card">
-                        <a href="/2020/07/04/hello-world/">
-                            <div class="card-image">
-                                
-                                
-                                <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                                
-                                <span class="card-title">Hello World</span>
-                            </div>
-                        </a>
-                        <div class="card-content article-content">
-                            <div class="summary block-with-text">
-                                
-                                    Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
-                                
-                            </div>
-                            <div class="publish-info">
-                                <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2020-07-04
-                                </span>
-                                <span class="publish-author">
-                                    
-                                    <i class="fas fa-user fa-fw"></i>
-                                    DYL
-                                    
-                                </span>
-                            </div>
-                        </div>
-
                         
                     </div>
                 </div>
@@ -975,30 +491,6 @@ NoSQL：not only SQL，泛指非关系型数据库
     </div>
 
 </main>
-
-
-<div class="container paging">
-    <div class="row">
-        <div class="col s6 m4 l4">
-            
-            <a href="/archives/"
-               class="left btn-floating btn-large waves-effect waves-light bg-color">
-                <i class="fas fa-angle-left"></i>
-            </a>
-            
-        </div>
-        <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">2 / 2</div>
-        </div>
-        <div class="col s6 m4 l4">
-            
-            <a class="right btn-floating btn-large disabled">
-                <i class="fas fa-angle-right"></i>
-            </a>
-            
-        </div>
-    </div>
-</div>
 
 
 
