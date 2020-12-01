@@ -449,7 +449,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h4 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h4><p>OSI（Open System Interconnect），即开放式系统互联。 一般都叫OSI参考模型，是ISO（国际标准化组织）组织在1985年研究的网络互连模型。分为：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层</p>
-<p><img src="/2020/11/28/TCP-UDP/TCP-UDP/OSI.png" alt=""></p>
+<p><img src="/2020/11/28/TCP-UDP/OSI.png" alt=""></p>
 <p>OSI七层模型在TCP/ip协议中并未完全被实现，其中的应用层/表示层/会话层在TCP/ip协议中一起包含在应用层中。</p>
 <h4 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h4><ol>
 <li>TCP提供一种面向连接的、可靠的字节流服务。</li>
@@ -467,7 +467,7 @@
 <li>拥塞控制：当网络拥塞时，减少数据的发送。</li>
 </ol>
 <h4 id="TCP协议三次握手四次挥手"><a href="#TCP协议三次握手四次挥手" class="headerlink" title="TCP协议三次握手四次挥手"></a>TCP协议三次握手四次挥手</h4><p>TCP协议在进行连接时，会进行三次握手。client向server发送一个SYN(i)<br>包并进入SYN_SENT状态，等待服务器确认;server收到后返回一个ACK(i+1)包同时还返回一个SYN(k)包即SYN+ACK包，此时服务器进入SYN_RECV状态;client在接收到服务器返回客户端收到服务器的SYN+ACK包后，返回一个ACK(k+1)包。client返回ACK包后客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手</p>
-<p>TCP协议可以设计为四次握手，但是会浪费资源，三次已经足够了。<img src="/2020/11/28/TCP-UDP/TCP.jpg" alt=""></p>
+<p>TCP协议可以设计为四次握手，但是会浪费资源，三次已经足够了。<br><img src="/2020/11/28/TCP-UDP/TCP.jpg" alt=""></p>
 <h4 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h4><p>TCP协议在断开连接时，会进行四次挥手。首先Client会向server发送一个FIN(i)包，变成Fin_WAIT1状态;</p>
 <p>server在收到FIN(i)包后会返回一个ACK(i+1)包，服务器变成CLOSED_WAIT状态；</p>
 <p>由于服务器在返回ACK(i+1)包的时候可能还在传输数据，所以在服务器传输完数据之后，服务器还会再返回一个FIN(k)包，并进入到LAST-ACK状态，等待客户端的确认。</p>
