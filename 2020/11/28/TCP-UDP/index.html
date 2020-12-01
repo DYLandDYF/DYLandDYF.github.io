@@ -448,7 +448,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h4><p>OSI（Open System Interconnect），即开放式系统互联。 一般都叫OSI参考模型，是ISO（国际标准化组织）组织在1985年研究的网络互连模型。分为：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层<br><img src="../img/OSI.png" alt=""></p>
+                <h4 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h4><p>OSI（Open System Interconnect），即开放式系统互联。 一般都叫OSI参考模型，是ISO（国际标准化组织）组织在1985年研究的网络互连模型。分为：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层</p>
+<p><img src="/.io//img/OSI.png" alt=""></p>
 <p>OSI七层模型在TCP/ip协议中并未完全被实现，其中的应用层/表示层/会话层在TCP/ip协议中一起包含在应用层中。</p>
 <h4 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h4><ol>
 <li>TCP提供一种面向连接的、可靠的字节流服务。</li>
@@ -466,13 +467,14 @@
 <li>拥塞控制：当网络拥塞时，减少数据的发送。</li>
 </ol>
 <h4 id="TCP协议三次握手四次挥手"><a href="#TCP协议三次握手四次挥手" class="headerlink" title="TCP协议三次握手四次挥手"></a>TCP协议三次握手四次挥手</h4><p>TCP协议在进行连接时，会进行三次握手。client向server发送一个SYN(i)<br>包并进入SYN_SENT状态，等待服务器确认;server收到后返回一个ACK(i+1)包同时还返回一个SYN(k)包即SYN+ACK包，此时服务器进入SYN_RECV状态;client在接收到服务器返回客户端收到服务器的SYN+ACK包后，返回一个ACK(k+1)包。client返回ACK包后客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手</p>
-<p>TCP协议可以设计为四次握手，但是会浪费资源，三次已经足够了。<img src="../img/TCP.jpg" alt=""></p>
+<p>TCP协议可以设计为四次握手，但是会浪费资源，三次已经足够了。<img src="/.io//img/TCP.jpg" alt=""></p>
 <h4 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h4><p>TCP协议在断开连接时，会进行四次挥手。首先Client会向server发送一个FIN(i)包，变成Fin_WAIT1状态;</p>
 <p>server在收到FIN(i)包后会返回一个ACK(i+1)包，服务器变成CLOSED_WAIT状态；</p>
 <p>由于服务器在返回ACK(i+1)包的时候可能还在传输数据，所以在服务器传输完数据之后，服务器还会再返回一个FIN(k)包，并进入到LAST-ACK状态，等待客户端的确认。</p>
 <p>客户端再返回一个ACk(K+1)包，然后进入TIME-WAIT（时间等待）状态。注意此时TCP连接还没有释放，必须经过2MSL（最长报文段寿命）的时间后才会断开。</p>
 <p>当客户端撤销相应的TCB后，才进入CLOSED状态，服务器只要收到了客户端发出的确认，立即进入CLOSED状态。同样，撤销TCB后，就结束了这次的TCP连接。</p>
-<p>服务器结束TCP连接的时间要比客户端早一些。MSL是TCP报文的最大生存时间, 因此TIME_WAIT持续存在2MSL的话就能保证在两个传输方向上的尚未被接收或迟到的报文段都已经消失，1、防止最后一个ACK对方没有收到，2、刚刚回收的五元组，保留一段时间在分配。<br><img src="../img/TCP_OSI.png" alt=""></p>
+<p>服务器结束TCP连接的时间要比客户端早一些。MSL是TCP报文的最大生存时间, 因此TIME_WAIT持续存在2MSL的话就能保证在两个传输方向上的尚未被接收或迟到的报文段都已经消失，1、防止最后一个ACK对方没有收到，2、刚刚回收的五元组，保留一段时间在分配。</p>
+<p><img src="/.io//img/TCP_OSI.png" alt=""></p>
 <h4 id="TCP连接过程中的名词"><a href="#TCP连接过程中的名词" class="headerlink" title="TCP连接过程中的名词"></a>TCP连接过程中的名词</h4><ol>
 <li><p>序列号seq<br>占4个字节，用来标记数据段的顺序，TCP把连接中发送的所有数据字节都编上一个序号，第一个字节的编号由本地随机产生，给字节编上序号后，就给每一个报文段指派一个序号，序列号seq就是这个报文段中的第一个字节的数据编号。</p>
 </li>
