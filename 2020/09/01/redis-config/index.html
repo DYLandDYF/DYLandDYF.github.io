@@ -530,7 +530,7 @@ auto-aof-rewrite-min-size 64mb
 # refuse the replica request.
 #
  masterauth <master-password>
-</master-password></masterport></masterip></code></pre>
+</code></pre>
 <h5 id="哨兵模式配置"><a href="#哨兵模式配置" class="headerlink" title="哨兵模式配置"></a>哨兵模式配置</h5><p>在配置哨兵模式时，需要自己手动创建sentinel.conf（在redis6版本里面，会自带的sentinel.conf文件），文件名不能错</p>
 <pre class=" language-shell"><code class="language-shell"># the replicas using additional configuration options.
 # Also note that the configuration file is rewritten when a
@@ -540,7 +540,7 @@ auto-aof-rewrite-min-size 64mb
 # The valid charset is A-z 0-9 and the three characters ".-_".
 sentinel monitor mymaster 127.0.0.1 6379 2
 #2表示需要2个sentinel才能判断客观下线,默认值是二
-#配置格式：sentinel <option_name> <master_name> <option_value></option_value></master_name></option_name></code></pre>
+#配置格式：sentinel <option_name> <master_name> <option_value></code></pre>
 <p>启动哨兵节点时，在src目录下执行./redis-sentinel ../sentinel.conf就可以启动哨兵节点了</p>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -813,8 +813,8 @@ sentinel monitor mymaster 127.0.0.1 6379 2
                     <div class="summary block-with-text">
                         
                             下载连接redis的开源库在命令行输入go get github.com/go-redis/redis,结果如下
-E:\code\go\src\design&gt;go get github.com/go-redis/redis
-go: d
+E:\code\go\src\design>go get github.com/go-redis/redis
+go: down
                         
                     </div>
                     <div class="publish-info">

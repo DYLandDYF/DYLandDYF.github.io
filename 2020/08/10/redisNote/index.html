@@ -576,15 +576,15 @@ mset <span class="token keyword">user</span>:<span class="token number">1</span>
 <li>执行事务</li>
 </ol>
 <pre class=" language-sql"><code class="language-sql">开启事务
-<span class="token operator">-</span><span class="token operator">&gt;</span>  multi   
-<span class="token operator">-</span><span class="token operator">&gt;</span>  <span class="token keyword">set</span> k1 v1
-<span class="token operator">-</span><span class="token operator">&gt;</span>  <span class="token keyword">set</span> k2 v2
-<span class="token operator">-</span><span class="token operator">&gt;</span>  get k1
-<span class="token operator">-</span><span class="token operator">&gt;</span>  <span class="token keyword">set</span> k3 v3
+<span class="token operator">-</span><span class="token operator">></span>  multi   
+<span class="token operator">-</span><span class="token operator">></span>  <span class="token keyword">set</span> k1 v1
+<span class="token operator">-</span><span class="token operator">></span>  <span class="token keyword">set</span> k2 v2
+<span class="token operator">-</span><span class="token operator">></span>  get k1
+<span class="token operator">-</span><span class="token operator">></span>  <span class="token keyword">set</span> k3 v3
 执行事务
-<span class="token operator">-</span><span class="token operator">&gt;</span>  <span class="token keyword">exec</span>
+<span class="token operator">-</span><span class="token operator">></span>  <span class="token keyword">exec</span>
 取消事务
-<span class="token operator">-</span><span class="token operator">&gt;</span>  <span class="token keyword">discard</span></code></pre>
+<span class="token operator">-</span><span class="token operator">></span>  <span class="token keyword">discard</span></code></pre>
 <h4 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h4><p>乐观锁假设数据一般情况下不会造成冲突，所以在数据进行提交更新的时候，才会正式对数据的冲突与否进行检测，如果发现冲突了，则返回给用户错误的信息，让用户决定如何去做。</p>
 <p>Redis的乐观锁实现采用的是watch命令</p>
 <ul>
@@ -592,7 +592,7 @@ mset <span class="token keyword">user</span>:<span class="token number">1</span>
 <li>unwatch key：取消监视</li>
 </ul>
 <p>如果事务失败，先解锁，然后重新加锁，再次进行事务操作</p>
-<p><img src="/.io//img/OptimisticLocking.png" alt=""></p>
+<p><img src="/2020/08/10/redisNote/img/OptimisticLocking.png" alt=""></p>
 <h4 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h4><h5 id="RDB-Redis-DataBase"><a href="#RDB-Redis-DataBase" class="headerlink" title="RDB(Redis DataBase)"></a>RDB(Redis DataBase)</h5><p>RDB：保存redis数据的快照，Redis会单独创建(fork)一个子进程来进行持久化,会先将数据写入到一个临时文件中(dump.rdb)，持久化进程结束后，再替换以前持久化的文件。恢复时，Redis会直接将快照读入内存。</p>
 <p>优点:</p>
 <ol>
@@ -606,8 +606,8 @@ mset <span class="token keyword">user</span>:<span class="token number">1</span>
 <li>可能会丢失数据</li>
 </ol>
 <ol>
-<li>save触发方式：该命令会阻塞当前Redis服务器，执行save命令期间，Redis不能处理其他命令，直到RDB过程完成为止<br><img src="/.io//img/rdb.jpg" alt=""></li>
-<li>bgsave触发方式：执行该命令时，Redis会在后台异步进行快照操作，快照同时还可以响应客户端请求<br><img src="/.io//img/rdb2.jpg" alt=""></li>
+<li>save触发方式：该命令会阻塞当前Redis服务器，执行save命令期间，Redis不能处理其他命令，直到RDB过程完成为止<br><img src="/2020/08/10/redisNote/img/rdb.jpg" alt=""></li>
+<li>bgsave触发方式：执行该命令时，Redis会在后台异步进行快照操作，快照同时还可以响应客户端请求<br><img src="/2020/08/10/redisNote/img/rdb2.jpg" alt=""></li>
 <li>自动触发：在配置文件中设置触发规则。执行flushall或者退出Redis时，也会自动触发RDB</li>
 </ol>
 <p>只要将RDB文件放在Redis启动目录，Redis启动时会自动恢复</p>
@@ -631,7 +631,7 @@ mset <span class="token keyword">user</span>:<span class="token number">1</span>
 redis<span class="token operator">-</span>benchmark <span class="token operator">-</span>n <span class="token number">10000</span> <span class="token operator">-</span>q</code></pre>
 <h4 id="Redis订阅发布"><a href="#Redis订阅发布" class="headerlink" title="Redis订阅发布"></a>Redis订阅发布</h4><p>Redis订阅发布是一种消息通信模式：发送者(pub)发送消息,订阅者(sub)接收消息，Redis可以订阅任意数量的频道</p>
 <p>订阅一个频道后，Redis-server里维护了一个字典，这个字典的键就是一个个频道，字典的值是一个链表，链表中包含了所有订阅这个频道的客户端。</p>
-<p>订阅消息发布：<br><img src="/.io//img/Redispubsub.png" alt=""></p>
+<p>订阅消息发布：<br><img src="/2020/08/10/redisNote/img/Redispubsub.png" alt=""></p>
 <p>操作命令：</p>
 <ul>
 <li>subscribe name:订阅一个频道</li>

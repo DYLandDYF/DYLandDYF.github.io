@@ -496,8 +496,8 @@ func main(){
         OrderNumber: 2,
         Timestamp:   "2020/9/11",
     }
-    oederEnty,_:=proto.Marshal(&amp;order)
-    o1 :=&amp;test.Order{}
+    oederEnty,_:=proto.Marshal(&order)
+    o1 :=&test.Order{}
     proto.Unmarshal(oederEnty,o1)
     fmt.Println(o1)
 }
