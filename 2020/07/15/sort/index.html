@@ -571,13 +571,13 @@
 <li>对每个不是空的桶进行排序。</li>
 <li>从不是空的桶里面把排序好的数据进行拼接；</li>
 </ul>
-<h4 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h4><p>思想：它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。</p>
-<h5 id="步骤-4"><a href="#步骤-4" class="headerlink" title="步骤"></a>步骤</h5><ol>
+<h3 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h3><p>思想：它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。</p>
+<h4 id="步骤-4"><a href="#步骤-4" class="headerlink" title="步骤"></a>步骤</h4><ol>
 <li>将第一个元素视为已经排序</li>
 <li>从第一个元素开始依次向后取出元素，与它前面已经排序的序列比较，将它插入到合适的位置</li>
 </ol>
-<h5 id="图解-3"><a href="#图解-3" class="headerlink" title="图解"></a>图解</h5><p><img src="/2020/07/15/sort/insertSort.jpg" alt=""></p>
-<h5 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h5><pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">InsertSort</span><span class="token punctuation">(</span>nums <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span>cur <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<h4 id="图解-3"><a href="#图解-3" class="headerlink" title="图解"></a>图解</h4><p><img src="/2020/07/15/sort/insertSort.jpg" alt=""></p>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">InsertSort</span><span class="token punctuation">(</span>nums <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span>cur <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">if</span> cur<span class="token operator">>=</span><span class="token function">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">return</span>
     <span class="token punctuation">}</span>
@@ -593,8 +593,8 @@
     <span class="token punctuation">}</span>
     <span class="token function">InsertSort</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span>cur<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span></code></pre>
-<h4 id="希尔排序（shell-sort）"><a href="#希尔排序（shell-sort）" class="headerlink" title="希尔排序（shell sort）"></a>希尔排序（shell sort）</h4><p>思想:希尔排序算是对简单插入排序的一种改进，属于一种增量式的排序算法，通过对数组”分组微调”,使大部分元素有序，减少插入排序的工作量</p>
-<h5 id="图解-4"><a href="#图解-4" class="headerlink" title="图解"></a>图解</h5><p><img src="/2020/07/15/sort/shellsort.png" alt=""></p>
+<h3 id="希尔排序（shell-sort）"><a href="#希尔排序（shell-sort）" class="headerlink" title="希尔排序（shell sort）"></a>希尔排序（shell sort）</h3><p>思想:希尔排序算是对简单插入排序的一种改进，属于一种增量式的排序算法，通过对数组”分组微调”,使大部分元素有序，减少插入排序的工作量</p>
+<h4 id="图解-4"><a href="#图解-4" class="headerlink" title="图解"></a>图解</h4><p><img src="/2020/07/15/sort/shellsort.png" alt=""></p>
 <pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">ShellSort</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">var</span> n <span class="token builtin">int</span><span class="token operator">=</span><span class="token function">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span>
     <span class="token keyword">for</span> n<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">{</span>
