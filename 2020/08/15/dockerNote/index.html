@@ -463,6 +463,7 @@ sudo yum-config-manager \
 <pre class=" language-shell"><code class="language-shell">sudo docker run hello-world</code></pre>
 <h4 id="docker底层原理"><a href="#docker底层原理" class="headerlink" title="docker底层原理"></a>docker底层原理</h4><p>工作原理：docker是一个c/s架构的系统，docker的守护进程运行在主机上，通过socket从客户端访问，dockerServer收到这个命令，就会去执行</p>
 <h4 id="Docker命令"><a href="#Docker命令" class="headerlink" title="Docker命令"></a>Docker命令</h4><h5 id="systemctl-start-docker-启动命令"><a href="#systemctl-start-docker-启动命令" class="headerlink" title="systemctl start docker:启动命令"></a>systemctl start docker:启动命令</h5><p>centos中启动docker</p>
+<pre class=" language-shell"><code class="language-shell">systemctl start docker</code></pre>
 <h5 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h5><ul>
 <li>docker version：查看docker版本信息<pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ /]# docker version
 Client: Docker Engine - Community
@@ -477,7 +478,8 @@ Experimental:      false
 </li>
 </ul>
 <p>Server: Docker Engine - Community<br> Engine:<br>  Version:          19.03.13<br>  API version:      1.40 (minimum version 1.12)<br>  Go version:       go1.13.15<br>  Git commit:       4484c46d9d<br>  Built:            Wed Sep 16 17:01:11 2020<br>  OS/Arch:          linux/amd64<br>  Experimental:     false<br> containerd:<br>  Version:          1.3.7<br>  GitCommit:        8fba4e9a7d01810a393d5d25a3621dc101981175<br> runc:<br>  Version:          1.0.0-rc10<br>  GitCommit:        dc9208a3303feef5b3839f4323d9beb36df0a9dd<br> docker-init:<br>  Version:          0.18.0<br>  GitCommit:        fec3683<br>[root@iZbp1hrzkalf9rl3l0lzehZ /]# </p>
-<pre><code>- docker info:查看docker的系统信息
+<pre><code>- docker info:
+查看docker的系统信息
 ```shell
 [root@iZbp1hrzkalf9rl3l0lzehZ /]# docker info
 Client:
@@ -529,7 +531,7 @@ Server:
 
 [root@iZbp1hrzkalf9rl3l0lzehZ /]# 
 </code></pre><ul>
-<li>docker 命令 –help:查看某命令的用法<pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ /]# docker contianer --help
+<li>docker 命令 –help:<br>查看某命令的用法<pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ /]# docker contianer --help
 </code></pre>
 </li>
 </ul>
@@ -596,7 +598,8 @@ s</code></pre><h5 id="重启服务"><a href="#重启服务" class="headerlink" t
 b6bececde071
 [root@iZbp1hrzkalf9rl3l0lzehZ usr]# 
 </code></pre>
-<h5 id="docker-rmi-ID-name：删除镜像"><a href="#docker-rmi-ID-name：删除镜像" class="headerlink" title="docker rmi ID/name：删除镜像"></a>docker rmi ID/name：删除镜像</h5><pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ /]# docker images
+<h5 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像:"></a>删除镜像:</h5><p>docker rmi ID/name</p>
+<pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ /]# docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 mysql               latest              dd7265748b5d        8 days ago          545MB
 redis               latest              74d107221092        11 days ago         104MB
@@ -618,74 +621,121 @@ Deleted: sha256:8c3a028fc66f360ce6ce6c206786df68fac4c24257474cbe4f67eda0ac21efd6
 Deleted: sha256:0a6d37fabaceb4faa555e729a7d97cb6ee193cb97789a213907a3d3c156d7e35
 Deleted: sha256:579519c51de1afe1e29d284b1741af239a307975197cf6ce213a70068d923231
 [root@iZbp1hrzkalf9rl3l0lzehZ /]# </code></pre>
-<h5 id="启动容器：docker-run"><a href="#启动容器：docker-run" class="headerlink" title="启动容器：docker run"></a>启动容器：docker run</h5><ul>
+<h5 id="新建并启动容器："><a href="#新建并启动容器：" class="headerlink" title="新建并启动容器："></a>新建并启动容器：</h5><ul>
+<li>docker run</li>
 <li>docker run -it –name name：以交互形式启动docker,-i  以交互模式运行容器；-t  为容器重新分配一个伪输入终端；–name  为容器指定一个名称</li>
 <li>docker run -d name:以守护进程的方式运行</li>
 <li>docker start name/ID:启动一个或多个已经被停止的容器</li>
-<li>docker restart name/ID：重启容器<h5 id="查看正在运行中的容器：docker-ps"><a href="#查看正在运行中的容器：docker-ps" class="headerlink" title="查看正在运行中的容器：docker ps"></a>查看正在运行中的容器：docker ps</h5></li>
+<li>docker restart name/ID：重启容器</li>
 </ul>
-<h5 id="查看容器-docker-container"><a href="#查看容器-docker-container" class="headerlink" title="查看容器:docker container"></a>查看容器:docker container</h5><ul>
-<li>docker container ls -a:查看所有的容器</li>
-</ul>
-<h5 id="关闭容器-docker-stop-name"><a href="#关闭容器-docker-stop-name" class="headerlink" title="关闭容器:docker stop name"></a>关闭容器:docker stop name</h5><h5 id="查看容器日志"><a href="#查看容器日志" class="headerlink" title="查看容器日志:"></a>查看容器日志:</h5><ul>
-<li>docker logs ID:查看容器日志<pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ /]# docker logs 786b6e44b074
-1:C 29 Nov 2020 09:52:46.604 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
-1:C 29 Nov 2020 09:52:46.604 # Redis version=6.0.9, bits=64, commit=00000000, modified=0, pid=1, just started
-1:C 29 Nov 2020 09:52:46.604 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
-             _._                                                  
-        _.-``__ ''-._                                             
-   _.-``    `.  `_.  ''-._           Redis 6.0.9 (00000000/0) 64 bit
-.-`` .-```.  ```\/    _.,_ ''-._                                   
-(    '      ,       .-`  | `,    )     Running in standalone mode
-|`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
-|    `-._   `._    /     _.-'    |     PID: 1
-`-._    `-._  `-./  _.-'    _.-'                                   
-|`-._`-._    `-.__.-'    _.-'_.-'|                                  
-|    `-._`-._        _.-'_.-'    |           http://redis.io        
-`-._    `-._`-.__.-'_.-'    _.-'                                   
-|`-._`-._    `-.__.-'    _.-'_.-'|                                  
-|    `-._`-._        _.-'_.-'    |                                  
-`-._    `-._`-.__.-'_.-'    _.-'                                   
-   `-._    `-.__.-'    _.-'                                       
-       `-._        _.-'                                           
-           `-.__.-'                                               
+<h5 id="启动已经存在的容器："><a href="#启动已经存在的容器：" class="headerlink" title="启动已经存在的容器："></a>启动已经存在的容器：</h5><p>docker start name/id</p>
+<h5 id="查看正在运行中的容器："><a href="#查看正在运行中的容器：" class="headerlink" title="查看正在运行中的容器："></a>查看正在运行中的容器：</h5><p>docker ps</p>
+<h5 id="进入已经运行的容器"><a href="#进入已经运行的容器" class="headerlink" title="进入已经运行的容器:"></a>进入已经运行的容器:</h5><ul>
+<li>docker exec -it id/name<pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+bdf56ccd31dd        mycentos            "/bin/bash"         37 minutes ago      Up 37 minutes       8080/tcp            mycentos
+[root@iZbp1hrzkalf9rl3l0lzehZ ~]# docker exec -it mycentos bin/bash
+[root@bdf56ccd31dd /]# 
 </code></pre>
 </li>
 </ul>
-<p>1:M 29 Nov 2020 09:52:46.605 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.<br>1:M 29 Nov 2020 09:52:46.605 # Server initialized<br>1:M 29 Nov 2020 09:52:46.605 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add ‘vm.overcommit_memory = 1’ to /etc/sysctl.conf and then reboot or run the command ‘sysctl vm.overcommit_memory=1’ for this to take effect.<br>1:M 29 Nov 2020 09:52:46.605 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command ‘echo madvise &gt; /sys/kernel/mm/transparent_hugepage/enabled’ as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled (set to ‘madvise’ or ‘never’).<br>1:M 29 Nov 2020 09:52:46.606 * Ready to accept connections</p>
-<pre><code>- docker logs -f -t --since="2020-11-28" --tail=100 ID:查看指定时间后的日志，只显示最后10条。-f  跟踪日志输出；-t   显示时间戳；--tail  仅列出最新N条容器日志；
- ```shell
- [root@iZbp1hrzkalf9rl3l0lzehZ /]# docker logs -f -t --since="2020-11-28" --tail==10
- "docker logs" requires exactly 1 argument.
- See 'docker logs --help'.
+<pre><code>
+- docker attach id/name
+- 区别：exec进入的是一个新的终端，attach进入的是正在运行的那个终端
 
- Usage:  docker logs [OPTIONS] CONTAINER
-
- Fetch the logs of a container
- [root@iZbp1hrzkalf9rl3l0lzehZ /]# docker logs -f -t --since="2020-11-28" --tail==10 786b6e44b074
- 2020-11-29T09:52:46.609392370Z 1:C 29 Nov 2020 09:52:46.604 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
- 2020-11-29T09:52:46.609415164Z 1:C 29 Nov 2020 09:52:46.604 # Redis version=6.0.9, bits=64, commit=00000000, modified=0, pid=1, just started
- 2020-11-29T09:52:46.609418582Z 1:C 29 Nov 2020 09:52:46.604 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
- 2020-11-29T09:52:46.609421864Z                 _._                                                  
- 2020-11-29T09:52:46.609424026Z            _.-``__ ''-._                                             
- 2020-11-29T09:52:46.609426163Z       _.-``    `.  `_.  ''-._           Redis 6.0.9 (00000000/0) 64 bit
- 2020-11-29T09:52:46.609428151Z   .-`` .-```.  ```\/    _.,_ ''-._                                   
- 2020-11-29T09:52:46.609430379Z  (    '      ,       .-`  | `,    )     Running in standalone mode
- 2020-11-29T09:52:46.609432423Z  |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
- 2020-11-29T09:52:46.609434501Z  |    `-._   `._    /     _.-'    |     PID: 1
- 2020-11-29T09:52:46.609436493Z   `-._    `-._  `-./  _.-'    _.-'                                   
- 2020-11-29T09:52:46.609445131Z  |`-._`-._    `-.__.-'    _.-'_.-'|                                  
- 2020-11-29T09:52:46.609447287Z  |    `-._`-._        _.-'_.-'    |           http://redis.io        
- 2020-11-29T09:52:46.609449258Z   `-._    `-._`-.__.-'_.-'    _.-'                                   
- 2020-11-29T09:52:46.609451368Z  |`-._`-._    `-.__.-'    _.-'_.-'|                                  
- 2020-11-29T09:52:46.609453373Z  |    `-._`-._        _.-'_.-'    |                                  
- 2020-11-29T09:52:46.609455340Z   `-._    `-._`-.__.-'_.-'    _.-'                                   
- 2020-11-29T09:52:46.609457337Z       `-._    `-.__.-'    _.-'                                       
- 2020-11-29T09:52:46.609459361Z           `-._        _.-'                                           
- 2020-11-29T09:52:46.609461331Z               `-.__.-'                                       </code></pre><ul>
-<li>docker logs –since 30m ID：查看最近30分钟的日志</li>
+##### 将容器内文件拷贝到主机
+docker co id/name:path_docker hosts_path
+```shell
+docker cp mycentos:/usr/temp/main.go /usr/workspace</code></pre><h5 id="查看容器-docker-container"><a href="#查看容器-docker-container" class="headerlink" title="查看容器:docker container"></a>查看容器:docker container</h5><ul>
+<li>docker container ls -a:查看所有的容器<pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ ~]# docker container ls -a
+CONTAINER ID        IMAGE               COMMAND                   CREATED             STATUS                    PORTS               NAMES
+a747e52e6987        mycentos            "/bin/bash"               2 days ago          Exited (1) 2 days ago                         quirky_cori
+6403d52e430f        mycentos            "/bin/bash"               2 days ago          Exited (0) 2 days ago                         jolly_cohen
+ad93a1b2c90d        7bca68e1f58d        "/bin/sh -c 'yum ins…"    2 days ago          Exited (1) 2 days ago                         naughty_kirch
+5a98e511742b        mynginx:v1.0        "/docker-entrypoint.…"    2 days ago          Exited (0) 2 days ago                         sharp_wilbur
+4590d95fd096        bc9a0695f571        "/bin/sh -c '[echo \"…"   3 days ago          Exited (127) 3 days ago                       sweet_tharp
+df81b88c5b7b        bc9a0695f571        "/bin/sh -c '[echo '…"    3 days ago          Exited (127) 3 days ago                       trusting_meitner
+786b6e44b074        redis               "docker-entrypoint.s…"    12 days ago         Exited (0) 2 days ago                         cool_pasteur
+b0ebc81d05e0        redis               "docker-entrypoint.s…"    12 days ago         Exited (2) 12 days ago                        strange_bose
+[root@iZbp1hrzkalf9rl3l0lzehZ ~]# 
+</code></pre>
+</li>
 </ul>
-<h5 id="docker-kill-name-id-杀掉一个运行中的容器"><a href="#docker-kill-name-id-杀掉一个运行中的容器" class="headerlink" title="docker kill name/id:杀掉一个运行中的容器"></a>docker kill name/id:杀掉一个运行中的容器</h5><h5 id="删除容器：docker-rm-f-name-f表示强制删除"><a href="#删除容器：docker-rm-f-name-f表示强制删除" class="headerlink" title="删除容器：docker rm -f name,-f表示强制删除"></a>删除容器：docker rm -f name,-f表示强制删除</h5><pre class=" language-shell"><code class="language-shell">//删除docker中的所有容器
+<pre><code>
+##### 关闭容器:docker stop name
+
+##### 查看容器日志:
+ - docker logs ID:查看容器日志
+ ```shell
+[root@iZbp1hrzkalf9rl3l0lzehZ /]# docker logs 786b6e44b074
+1:C 29 Nov 2020 09:52:46.604 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1:C 29 Nov 2020 09:52:46.604 # Redis version=6.0.9, bits=64, commit=00000000, modified=0, pid=1, just started
+1:C 29 Nov 2020 09:52:46.604 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 6.0.9 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 1
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+1:M 29 Nov 2020 09:52:46.605 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+1:M 29 Nov 2020 09:52:46.605 # Server initialized
+1:M 29 Nov 2020 09:52:46.605 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+1:M 29 Nov 2020 09:52:46.605 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo madvise &gt; /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled (set to 'madvise' or 'never').
+1:M 29 Nov 2020 09:52:46.606 * Ready to accept connections
+</code></pre><ul>
+<li><p>docker logs -f -t –since=”2020-11-28” –tail=100 ID:查看指定时间后的日志，只显示最后10条。-f  跟踪日志输出；-t   显示时间戳；–tail  仅列出最新N条容器日志；</p>
+<pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ /]# docker logs -f -t --since="2020-11-28" --tail==10
+"docker logs" requires exactly 1 argument.
+See 'docker logs --help'.
+
+Usage:  docker logs [OPTIONS] CONTAINER
+
+Fetch the logs of a container
+[root@iZbp1hrzkalf9rl3l0lzehZ /]# docker logs -f -t --since="2020-11-28" --tail==10 786b6e44b074
+2020-11-29T09:52:46.609392370Z 1:C 29 Nov 2020 09:52:46.604 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+2020-11-29T09:52:46.609415164Z 1:C 29 Nov 2020 09:52:46.604 # Redis version=6.0.9, bits=64, commit=00000000, modified=0, pid=1, just started
+2020-11-29T09:52:46.609418582Z 1:C 29 Nov 2020 09:52:46.604 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+2020-11-29T09:52:46.609421864Z                 _._                                                  
+2020-11-29T09:52:46.609424026Z            _.-``__ ''-._                                             
+2020-11-29T09:52:46.609426163Z       _.-``    `.  `_.  ''-._           Redis 6.0.9 (00000000/0) 64 bit
+2020-11-29T09:52:46.609428151Z   .-`` .-```.  ```\/    _.,_ ''-._                                   
+2020-11-29T09:52:46.609430379Z  (    '      ,       .-`  | `,    )     Running in standalone mode
+2020-11-29T09:52:46.609432423Z  |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+2020-11-29T09:52:46.609434501Z  |    `-._   `._    /     _.-'    |     PID: 1
+2020-11-29T09:52:46.609436493Z   `-._    `-._  `-./  _.-'    _.-'                                   
+2020-11-29T09:52:46.609445131Z  |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+2020-11-29T09:52:46.609447287Z  |    `-._`-._        _.-'_.-'    |           http://redis.io        
+2020-11-29T09:52:46.609449258Z   `-._    `-._`-.__.-'_.-'    _.-'                                   
+2020-11-29T09:52:46.609451368Z  |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+2020-11-29T09:52:46.609453373Z  |    `-._`-._        _.-'_.-'    |                                  
+2020-11-29T09:52:46.609455340Z   `-._    `-._`-.__.-'_.-'    _.-'                                   
+2020-11-29T09:52:46.609457337Z       `-._    `-.__.-'    _.-'                                       
+2020-11-29T09:52:46.609459361Z           `-._        _.-'                                           
+2020-11-29T09:52:46.609461331Z               `-.__.-'                                       </code></pre>
+</li>
+<li><p>docker logs –since 30m ID：查看最近30分钟的日志</p>
+</li>
+</ul>
+<h5 id="docker-kill-name-id-杀掉一个运行中的容器"><a href="#docker-kill-name-id-杀掉一个运行中的容器" class="headerlink" title="docker kill name/id:杀掉一个运行中的容器"></a>docker kill name/id:杀掉一个运行中的容器</h5><pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+9dc94ce74a5a        mycentos            "/bin/bash"         2 minutes ago       Up 2 minutes        8080/tcp            brave_nobel
+[root@iZbp1hrzkalf9rl3l0lzehZ ~]# docker kill 9dc94ce74a5a
+9dc94ce74a5a
+[root@iZbp1hrzkalf9rl3l0lzehZ ~]# 
+</code></pre>
+<h5 id="删除容器：docker-rm-f-name-f表示强制删除"><a href="#删除容器：docker-rm-f-name-f表示强制删除" class="headerlink" title="删除容器：docker rm -f name,-f表示强制删除"></a>删除容器：docker rm -f name,-f表示强制删除</h5><pre class=" language-shell"><code class="language-shell">//删除docker中的所有容器
 docker rm $(docker container ls)</code></pre>
 <h5 id="列出容器中运行的进程：docker-top-name"><a href="#列出容器中运行的进程：docker-top-name" class="headerlink" title="列出容器中运行的进程：docker top name"></a>列出容器中运行的进程：docker top name</h5><pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ /]# docker top 786b6e44b074
 UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
@@ -693,7 +743,43 @@ systemd+            5544                5527                0                   
 [root@iZbp1hrzkalf9rl3l0lzehZ /]# 
 </code></pre>
 <h5 id="提交镜像：docker-commit，会生成一个新的镜像，-a-提交的镜像作者；-c-使用Dockerfile指令来创建镜像；-m-提交时的说明文字；-p-在commit时，将容器暂停"><a href="#提交镜像：docker-commit，会生成一个新的镜像，-a-提交的镜像作者；-c-使用Dockerfile指令来创建镜像；-m-提交时的说明文字；-p-在commit时，将容器暂停" class="headerlink" title="提交镜像：docker commit，会生成一个新的镜像，-a 提交的镜像作者；-c 使用Dockerfile指令来创建镜像；-m :提交时的说明文字；-p :在commit时，将容器暂停"></a>提交镜像：docker commit，会生成一个新的镜像，-a 提交的镜像作者；-c 使用Dockerfile指令来创建镜像；-m :提交时的说明文字；-p :在commit时，将容器暂停</h5><p>docker commit -a=”xxx” -m=”xxx” ID  name:v1.1</p>
-<script>
+<pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ ~]# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+bdf56ccd31dd        mycentos            "/bin/bash"         49 seconds ago      Up 48 seconds       8080/tcp            mycentos
+[root@iZbp1hrzkalf9rl3l0lzehZ ~]# docker commit -a="dyl" mycentos mycentos:v1.0
+sha256:54b5da54e44c2fe7840e4ad543fccd39128d8400ce3320df421346ad79c4ef73
+[root@iZbp1hrzkalf9rl3l0lzehZ ~]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+mycentos            v1.0                54b5da54e44c        13 seconds ago      491MB
+mycentos            latest              2bec99ed389b        3 days ago          491MB
+mynginx             v1.0                6c9f4177d249        3 days ago          133MB
+nginx               latest              bc9a0695f571        2 weeks ago         133MB
+redis               latest              74d107221092        3 weeks ago         104MB
+centos              latest              0d120b6ccaa8        4 months ago        215MB
+hello-world         latest              bf756fb1ae65        11 months ago       13.3kB
+</code></pre>
+<h5 id="docker-inspect-name-id-查看详细信息"><a href="#docker-inspect-name-id-查看详细信息" class="headerlink" title="docker inspect name/id:查看详细信息"></a>docker inspect name/id:查看详细信息</h5><pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ ~]# docker inspect bdf56ccd31dd
+[
+    {
+        "Id": "bdf56ccd31dd2e4a8e135f6899ac0bc15a59ebf41c9f8d6d03a15a6db6a6f77b",
+        "Created": "2020-12-12T03:26:02.142713872Z",
+        "Path": "/bin/bash",
+        "Args": [],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 26776,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2020-12-12T03:26:02.60469655Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:2bec99ed389b969730f7e385743b62b039b065f9ef987586bbf956b215acaeb8",</code></pre>
+<h5 id="docker容器数据卷"><a href="#docker容器数据卷" class="headerlink" title="docker容器数据卷"></a>docker容器数据卷</h5><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
