@@ -830,7 +830,16 @@ RUN ./test.php dev offline</code></pre>
 <li><p>WORKDIR：指定工作目录</p>
 </li>
 </ul>
+<h5 id="生成镜像"><a href="#生成镜像" class="headerlink" title="生成镜像"></a>生成镜像</h5><ul>
+<li>docker build -t name:tag -f file_path .</li>
+</ul>
 <h5 id="docker网络"><a href="#docker网络" class="headerlink" title="docker网络"></a>docker网络</h5><p>在docker中，容器之间需要网络连接，这就需要用到docker网络技术了。<br><img src="/2020/08/15/dockerNote/dockernetwork.png" alt=""></p>
+<h5 id="docker容器连接"><a href="#docker容器连接" class="headerlink" title="docker容器连接"></a>docker容器连接</h5><p>docker中想要不通过docker网络分配的IP进行通讯，可以使用–link参数在启动容器的时候连接到已经存在的容器，这样就可以直接使用容器名或者容器ID进行网络连接</p>
+<pre class=" language-shell"><code class="language-shell">docker run -it --name name --link container_name image_name</code></pre>
+<h5 id="自定义网络"><a href="#自定义网络" class="headerlink" title="自定义网络"></a>自定义网络</h5><p>一般不建议使用docker的桥接模式了，推荐使用自建网络</p>
+<ul>
+<li>docker network create –driver bridge –subnet ip –gateway gateway_ip network_name</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
