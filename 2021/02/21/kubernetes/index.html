@@ -462,15 +462,62 @@
 <h4 id="水平伸缩"><a href="#水平伸缩" class="headerlink" title="水平伸缩"></a>水平伸缩</h4><p>监测业务上的负载，可以自动对负载高的进行扩容</p>
 <h4 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h4><p>kubernetes是典型的cs结构</p>
 <h5 id="Master节点结构"><a href="#Master节点结构" class="headerlink" title="Master节点结构"></a>Master节点结构</h5></li>
-<li><p>APIServer  :所有组件都会与APIServer进行连接</p>
+<li><p>APIServer  :可以水平扩展的一个组件，所有组件都会与APIServer进行连接，进行消息传输，组件之间不相互连接</p>
 </li>
-<li><p>Controller :完成对集群状态的管理</p>
+<li><p>Controller :可以热备的一个组件，只有一个active，完成对集群状态的管理</p>
 </li>
-<li><p>Scheduler  :可以监测集群中的宿主机</p>
+<li><p>Scheduler  :可以热备的一个组件，只有一个active，完成调度操作</p>
 </li>
-<li><p>ETCD       :</p>
+<li><p>ETCD       :分布式存储系统，本身也是高可用的系统，APIServer的元信息就存储在etcd中<br><img src="/2021/02/21/kubernetes/Master.jpg" alt=""></p>
+<h5 id="node"><a href="#node" class="headerlink" title="node"></a>node</h5><p>node是真正执行业务负载的</p>
 </li>
+<li><p>pod  :一个pod中运行着一个或多个容器</p>
+</li>
+<li><p>kublet:运行pod的组件，通过APIServer接收到pod运行状态，提交到Container Runtime</p>
+</li>
+<li><p>Container Runtime：从kublet接收信息，创建容器以及容器需要的环境</p>
+</li>
+<li><p>Storage Plugin:存储操作</p>
+</li>
+<li><p>Network Plugin:网络操作</p>
+</li>
+<li><p>Kube Proxy:完成service组网<br><img src="/2021/02/21/kubernetes/node.jpg" alt=""></p>
+<h4 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h4><h5 id="pod"><a href="#pod" class="headerlink" title="pod"></a>pod</h5></li>
 </ol>
+<ul>
+<li><p>最小的调度以及资源单元</p>
+</li>
+<li><p>由一个或多个容器组成</p>
+</li>
+<li><p>定义容器的运行方式(command、环境变量)</p>
+</li>
+<li><p>提供给容器共享的运行环境(网络、进程空间)</p>
+<h5 id="Volume"><a href="#Volume" class="headerlink" title="Volume"></a>Volume</h5></li>
+<li><p>声明在pod中容器可访问的文件目录</p>
+</li>
+<li><p>可以被挂载在pod中一个或多个容器的指定路径下</p>
+</li>
+<li><p>支持多种后端存储的抽象(本地存储、分布式存储、云存储)</p>
+<h5 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h5></li>
+<li><p>定义一组pod的副本数目、版本等</p>
+</li>
+<li><p>通过控制器(Controller)维持pod的数目(自动恢复失败的pod)</p>
+</li>
+<li><p>通过控制器以指定的策略控制版本(滚动升级、重新生成、回滚等)</p>
+<h5 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h5></li>
+<li><p>提供一个或者多个pod实例的稳定访问地址</p>
+</li>
+<li><p>支持多种访问方式的实现(ClusterIP、NodePort、LoadBalance)</p>
+<h5 id="NameSpaces"><a href="#NameSpaces" class="headerlink" title="NameSpaces"></a>NameSpaces</h5></li>
+<li><p>一个集群内部的逻辑隔离方式(鉴权、资源额度)</p>
+</li>
+<li><p>每个资源都属于一个NameSpace</p>
+</li>
+<li><p>同一个NameSpace中的资源名称唯一</p>
+</li>
+<li><p>不同的NameSpace中的资源名称可重名</p>
+</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
