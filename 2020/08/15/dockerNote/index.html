@@ -497,20 +497,59 @@ GitCommit:        fec3683
 <li>docker info:<br>查看docker的系统信息<pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ /]# docker info
 Client:
 Debug Mode: false
+Server:
+Containers: 2
+Running: 0
+Paused: 0
+Stopped: 2
+Images: 4
+Server Version: 19.03.13
+Storage Driver: overlay2
+Backing Filesystem: xfs
+Supports d_type: true
+Native Overlay Diff: true
+Logging Driver: json-file
+Cgroup Driver: cgroupfs
+Plugins:
+Volume: local
+Network: bridge host ipvlan macvlan null overlay
+Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+Swarm: inactive
+Runtimes: runc
+Default Runtime: runc
+Init Binary: docker-init
+containerd version: 8fba4e9a7d01810a393d5d25a3621dc101981175
+runc version: dc9208a3303feef5b3839f4323d9beb36df0a9dd
+init version: fec3683
+Security Options:
+seccomp
+ Profile: default
+Kernel Version: 4.18.0-193.14.2.el8_2.x86_64
+Operating System: CentOS Linux 8 (Core)
+OSType: linux
+Architecture: x86_64
+CPUs: 1
+Total Memory: 1.784GiB
+Name: iZbp1hrzkalf9rl3l0lzehZ
+ID: AOPS:3LNR:VZUF:J572:WIE5:JGDS:J3EO:327T:H6TM:657C:5UY4:JFHM
+Docker Root Dir: /var/lib/docker
+Debug Mode: false
+Registry: https://index.docker.io/v1/
+Labels:
+Experimental: false
+Insecure Registries:
+127.0.0.0/8
+Live Restore Enabled: false
 </code></pre>
 </li>
 </ul>
-<p>Server:<br> Containers: 2<br>  Running: 0<br>  Paused: 0<br>  Stopped: 2<br> Images: 4<br> Server Version: 19.03.13<br> Storage Driver: overlay2<br>  Backing Filesystem: xfs<br>  Supports d_type: true<br>  Native Overlay Diff: true<br> Logging Driver: json-file<br> Cgroup Driver: cgroupfs<br> Plugins:<br>  Volume: local<br>  Network: bridge host ipvlan macvlan null overlay<br>  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog<br> Swarm: inactive<br> Runtimes: runc<br> Default Runtime: runc<br> Init Binary: docker-init<br> containerd version: 8fba4e9a7d01810a393d5d25a3621dc101981175<br> runc version: dc9208a3303feef5b3839f4323d9beb36df0a9dd<br> init version: fec3683<br> Security Options:<br>  seccomp<br>   Profile: default<br> Kernel Version: 4.18.0-193.14.2.el8_2.x86_64<br> Operating System: CentOS Linux 8 (Core)<br> OSType: linux<br> Architecture: x86_64<br> CPUs: 1<br> Total Memory: 1.784GiB<br> Name: iZbp1hrzkalf9rl3l0lzehZ<br> ID: AOPS:3LNR:VZUF:J572:WIE5:JGDS:J3EO:327T:H6TM:657C:5UY4:JFHM<br> Docker Root Dir: /var/lib/docker<br> Debug Mode: false<br> Registry: <a href="https://index.docker.io/v1/" target="_blank" rel="noopener">https://index.docker.io/v1/</a><br> Labels:<br> Experimental: false<br> Insecure Registries:<br>  127.0.0.0/8<br> Live Restore Enabled: false</p>
 <p>[root@iZbp1hrzkalf9rl3l0lzehZ /]# </p>
 <pre><code>- docker 命令 --help:
 查看某命令的用法
 ```shell
 [root@iZbp1hrzkalf9rl3l0lzehZ /]# docker contianer --help
-
 Usage:    docker [OPTIONS] COMMAND
-
 A self-sufficient runtime for containers
-
 Options:
       --config string      Location of client config files (default "/root/.docker")
   -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with "docker context use")
@@ -523,7 +562,6 @@ Options:
       --tlskey string      Path to TLS key file (default "/root/.docker/key.pem")
       --tlsverify          Use TLS and verify the remote
   -v, --version            Print version information and quit
-
 Management Commands:
   builder     Manage builds
   config      Manage Docker configs
@@ -541,7 +579,6 @@ Management Commands:
   system      Manage Docker
   trust       Manage trust on Docker images
   volume      Manage volumes
-
 Commands:
   attach      Attach local standard input, output, and error streams to a running container
   build       Build an image from a Dockerfile
@@ -583,16 +620,20 @@ Commands:
   update      Update configuration of one or more containers
   version     Show the Docker version information
   wait        Block until one or more containers stop, then print their exit codes
-
 Run 'docker COMMAND --help' for more information on a command.
 [root@iZbp1hrzkalf9rl3l0lzehZ /]# </code></pre><h5 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h5><ul>
 <li>docker images:查看所有镜像<pre class=" language-shell"><code class="language-shell">[root@izbp1hrzkalf9rl3l0lzehz ~]# docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 hello-world         latest              bf756fb1ae65        7 months ago        13.3kB
+REPOSITORY             #镜像的仓库源
+TAG                    #镜像的标签
+IMAGE ID               #镜像的ID
+CREATED                #镜像的创建时间
+SIZE                   #镜像的大小
+
 </code></pre>
 </li>
 </ul>
-<p>REPOSITORY             #镜像的仓库源<br>TAG                    #镜像的标签<br>IMAGE ID               #镜像的ID<br>CREATED                #镜像的创建时间<br>SIZE                   #镜像的大小</p>
 <p>命令可选项<br>-a, –all             #列出所有镜像<br>-q, –quit            #列出镜像的ID</p>
 <pre><code>
 ##### 镜像搜索命令
@@ -631,8 +672,7 @@ s</code></pre>
 1ffbea2d44c3
 [root@iZbp1hrzkalf9rl3l0lzehZ usr]# docker rm b6bececde071
 b6bececde071
-[root@iZbp1hrzkalf9rl3l0lzehZ usr]# 
-</code></pre>
+[root@iZbp1hrzkalf9rl3l0lzehZ usr]# </code></pre>
 <h5 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像:"></a>删除镜像:</h5><p>docker rmi ID/name</p>
 <pre class=" language-shell"><code class="language-shell">[root@iZbp1hrzkalf9rl3l0lzehZ /]# docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
