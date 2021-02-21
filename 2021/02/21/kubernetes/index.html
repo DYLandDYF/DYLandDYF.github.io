@@ -442,14 +442,34 @@
             <div id="articleContent">
                 <h4 id="kubernetes由来"><a href="#kubernetes由来" class="headerlink" title="kubernetes由来"></a>kubernetes由来</h4><p>kubernetes是由google开源的一款容器自动化编排工具，可以轻松地管理容器集群。kubernetes在希腊语中是舵手的意思，它的前身是Google的borg系统。</p>
 <h4 id="kubernetes核心功能"><a href="#kubernetes核心功能" class="headerlink" title="kubernetes核心功能"></a>kubernetes核心功能</h4><ol>
-<li>服务发现与负载均衡   </li>
-<li>自动容器恢复</li>
-<li>存储编排</li>
-<li>容器自动装箱</li>
-<li>自动发布与回滚</li>
-<li>配置与密文管理</li>
-<li>批量执行</li>
-<li>水平伸缩<br><img src="/2021/02/21/kubernetes/kubernetes_gongneng.jpg" alt=""></li>
+<li><p>服务发现与负载均衡   </p>
+</li>
+<li><p>自动容器恢复</p>
+</li>
+<li><p>存储编排</p>
+</li>
+<li><p>容器自动装箱</p>
+</li>
+<li><p>自动发布与回滚</p>
+</li>
+<li><p>配置与密文管理</p>
+</li>
+<li><p>批量执行</p>
+</li>
+<li><p>水平伸缩<br><img src="/2021/02/21/kubernetes/kubernetes_gongneng.jpg" alt=""></p>
+<h4 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h4><p>kubernetes可以把提交的容器部署到适合的节点上去</p>
+<h4 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h4><p>可以监测集群中的宿主机，当某一个节点无响应时（故障），会自动迁移到一个健康可用的node上去</p>
+<h4 id="水平伸缩"><a href="#水平伸缩" class="headerlink" title="水平伸缩"></a>水平伸缩</h4><p>监测业务上的负载，可以自动对负载高的进行扩容</p>
+<h4 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h4><p>kubernetes是典型的cs结构</p>
+<h5 id="Master节点结构"><a href="#Master节点结构" class="headerlink" title="Master节点结构"></a>Master节点结构</h5></li>
+<li><p>APIServer  :所有组件都会与APIServer进行连接</p>
+</li>
+<li><p>Controller :完成对集群状态的管理</p>
+</li>
+<li><p>Scheduler  :可以监测集群中的宿主机</p>
+</li>
+<li><p>ETCD       :</p>
+</li>
 </ol>
 <script>
         document.querySelectorAll('.github-emoji')
