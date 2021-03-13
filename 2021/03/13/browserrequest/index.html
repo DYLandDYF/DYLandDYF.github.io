@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="kubernetes, goder">
+    <meta name="keywords" content="browserrequest, goder">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>kubernetes | goder</title>
+    <title>browserrequest | goder</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">kubernetes</h1>
+                    <h1 class="description center-align post-title">browserrequest</h1>
                 </div>
             </div>
         </div>
@@ -408,8 +408,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/kubernetes/">
-                                <span class="chip bg-color">kubernetes</span>
+                            <a href="/tags/web/">
+                                <span class="chip bg-color">web</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                                <span class="chip bg-color">面试题</span>
                             </a>
                         
                     </div>
@@ -424,7 +428,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-21
+                    2021-03-13
                 </div>
                 
 
@@ -440,84 +444,26 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="kubernetes由来"><a href="#kubernetes由来" class="headerlink" title="kubernetes由来"></a>kubernetes由来</h4><p>kubernetes是由google开源的一款容器自动化编排工具，可以轻松地管理容器集群。kubernetes在希腊语中是舵手的意思，它的前身是Google的borg系统。</p>
-<h4 id="kubernetes核心功能"><a href="#kubernetes核心功能" class="headerlink" title="kubernetes核心功能"></a>kubernetes核心功能</h4><ol>
-<li><p>服务发现与负载均衡   </p>
-</li>
-<li><p>自动容器恢复</p>
-</li>
-<li><p>存储编排</p>
-</li>
-<li><p>容器自动装箱</p>
-</li>
-<li><p>自动发布与回滚</p>
-</li>
-<li><p>配置与密文管理</p>
-</li>
-<li><p>批量执行</p>
-</li>
-<li><p>水平伸缩<br><img src="/2021/02/21/kubernetes/kubernetes_gongneng.jpg" alt=""></p>
-<h4 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h4><p>kubernetes可以把提交的容器部署到适合的节点上去</p>
-<h4 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h4><p>可以监测集群中的宿主机，当某一个节点无响应时（故障），会自动迁移到一个健康可用的node上去</p>
-<h4 id="水平伸缩"><a href="#水平伸缩" class="headerlink" title="水平伸缩"></a>水平伸缩</h4><p>监测业务上的负载，可以自动对负载高的进行扩容</p>
-<h4 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h4><p>kubernetes是典型的cs结构</p>
-<h5 id="Master节点结构"><a href="#Master节点结构" class="headerlink" title="Master节点结构"></a>Master节点结构</h5></li>
-<li><p>APIServer  :可以水平扩展的一个组件，所有组件都会与APIServer进行连接，进行消息传输，组件之间不相互连接</p>
-</li>
-<li><p>Controller :可以热备的一个组件，只有一个active，完成对集群状态的管理</p>
-</li>
-<li><p>Scheduler  :可以热备的一个组件，只有一个active，完成调度操作</p>
-</li>
-<li><p>ETCD       :分布式存储系统，本身也是高可用的系统，APIServer的元信息就存储在etcd中<br><img src="/2021/02/21/kubernetes/Master.jpg" alt=""></p>
-<h5 id="node"><a href="#node" class="headerlink" title="node"></a>node</h5><p>node是真正执行业务负载的</p>
-</li>
-<li><p>pod  :一个pod中运行着一个或多个容器</p>
-</li>
-<li><p>kublet:运行pod的组件，通过APIServer接收到pod运行状态，提交到Container Runtime</p>
-</li>
-<li><p>Container Runtime：从kublet接收信息，创建容器以及容器需要的环境</p>
-</li>
-<li><p>Storage Plugin:存储操作</p>
-</li>
-<li><p>Network Plugin:网络操作</p>
-</li>
-<li><p>Kube Proxy:完成service组网<br><img src="/2021/02/21/kubernetes/node.jpg" alt=""></p>
-<h4 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h4><h5 id="pod"><a href="#pod" class="headerlink" title="pod"></a>pod</h5></li>
-</ol>
+                <h4 id="面试题：在浏览器中输入网址按下回车之后发生了什么？"><a href="#面试题：在浏览器中输入网址按下回车之后发生了什么？" class="headerlink" title="面试题：在浏览器中输入网址按下回车之后发生了什么？"></a>面试题：在浏览器中输入网址按下回车之后发生了什么？</h4><p>原文：<a href="https://blog.csdn.net/deltatang/article/details/44779109" target="_blank" rel="noopener">https://blog.csdn.net/deltatang/article/details/44779109</a></p>
+<h4 id="URL解析"><a href="#URL解析" class="headerlink" title="URL解析"></a>URL解析</h4><p>浏览器解析输入的url确定输入的是一个关键字还是一个完整的http请求的url。如果输入是http协议等合法的url的话，就会请求这个url。如果不合法的话就会将输入作为一个参数传给搜索引擎，搜索引擎返回检索的结果。</p>
+<h4 id="检查HSTS列表"><a href="#检查HSTS列表" class="headerlink" title="检查HSTS列表"></a>检查HSTS列表</h4><p>现代浏览器为了防止downgrade attack(降级攻击),都内置的有HSTS(HTTP严格传输安全协议)列表。这个列表里包含了那些请求浏览器只使用HTTPS进行连接的网站</p>
 <ul>
-<li><p>最小的调度以及资源单元</p>
-</li>
-<li><p>由一个或多个容器组成</p>
-</li>
-<li><p>定义容器的运行方式(command、环境变量)</p>
-</li>
-<li><p>提供给容器共享的运行环境(网络、进程空间)</p>
-<h5 id="Volume"><a href="#Volume" class="headerlink" title="Volume"></a>Volume</h5></li>
-<li><p>声明在pod中容器可访问的文件目录</p>
-</li>
-<li><p>可以被挂载在pod中一个或多个容器的指定路径下</p>
-</li>
-<li><p>支持多种后端存储的抽象(本地存储、分布式存储、云存储)</p>
-<h5 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h5></li>
-<li><p>定义一组pod的副本数目、版本等</p>
-</li>
-<li><p>通过控制器(Controller)维持pod的数目(自动恢复失败的pod)</p>
-</li>
-<li><p>通过控制器以指定的策略控制版本(滚动升级、重新生成、回滚等)</p>
-<h5 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h5></li>
-<li><p>提供一个或者多个pod实例的稳定访问地址</p>
-</li>
-<li><p>支持多种访问方式的实现(ClusterIP、NodePort、LoadBalance)</p>
-<h5 id="NameSpaces"><a href="#NameSpaces" class="headerlink" title="NameSpaces"></a>NameSpaces</h5></li>
-<li><p>一个集群内部的逻辑隔离方式(鉴权、资源额度)</p>
-</li>
-<li><p>每个资源都属于一个NameSpace</p>
-</li>
-<li><p>同一个NameSpace中的资源名称唯一</p>
-</li>
-<li><p>不同的NameSpace中的资源名称可重名</p>
-</li>
+<li>如果网站在这个列表里，浏览器会使用HTTPS而不是HTTP协议，否则，最初的请求会使用HTTP协议发送</li>
+<li>注意，一个网站哪怕不在HSTS列表里，也可以要求浏览器对自己使用HSTS政策进行访问。浏览器向网站发出第一个HTTP请求之后，网站会返回浏览器一个响应，请求浏览器只使用HTTPS发送请求</li>
 </ul>
+<h4 id="浏览器进行编码"><a href="#浏览器进行编码" class="headerlink" title="浏览器进行编码"></a>浏览器进行编码</h4><p>如果输入的内容带有特殊字符,浏览器就会对输入的内容进行编码,转化为一个url</p>
+<h4 id="对网址进行DNS解析"><a href="#对网址进行DNS解析" class="headerlink" title="对网址进行DNS解析"></a>对网址进行DNS解析</h4><ul>
+<li>首先检查网址是否在浏览器的缓存记录中，没有的话就会去检查电脑中的hosts文件</li>
+<li>不在hosts文件中,就会去查询本地DNS服务器,这样一级一级地向上去查询DNS服务器。</li>
+</ul>
+<h4 id="建立连接"><a href="#建立连接" class="headerlink" title="建立连接"></a>建立连接</h4><p>经过DNS查询找到目标服务器的IP地址后,通过socket套接字与目标服务器创建一个tcp连接并获取资源。</p>
+<ul>
+<li>这个请求首先被交给传输层，在传输层请求被封装成TCP segment。目标端口会会被加入头部，源端口会在系统内核的动态端口范围内选取（Linux下是ip_local_port_range)</li>
+<li>TCP segment被送往网络层，网络层会在其中再加入一个IP头部，里面包含了目标服务器的IP地址以及本机的IP地址，把它封装成一个TCP packet。</li>
+<li>这个TCP packet接下来会进入链路层，链路层会在封包中加入frame头部，里面包含了本地内置网卡的MAC地址以及网关（本地路由器）的MAC地址。像前面说的一样，如果内核不知道网关的MAC地址，它必须进行ARP广播来查询其地址。</li>
+</ul>
+<h4 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h4><p>服务器在收到请求后，会对请求进行业务逻辑处理，然后将所需要的资源返回给客户端</p>
+<h4 id="浏览器渲染HTML文件"><a href="#浏览器渲染HTML文件" class="headerlink" title="浏览器渲染HTML文件"></a>浏览器渲染HTML文件</h4><p>在接收到服务器返回的资源之后，如果是HTML文件，则会将页面渲染出来。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -561,7 +507,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dylanddyf.github.io/2021/02/21/kubernetes/">https://dylanddyf.github.io/2021/02/21/kubernetes/</a>
+                    <a href="https://dylanddyf.github.io/2021/03/13/browserrequest/">https://dylanddyf.github.io/2021/03/13/browserrequest/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -599,8 +545,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/kubernetes/">
-                                    <span class="chip bg-color">kubernetes</span>
+                                <a href="/tags/web/">
+                                    <span class="chip bg-color">web</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                                    <span class="chip bg-color">面试题</span>
                                 </a>
                             
                         </div>
@@ -772,20 +722,20 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/13/browserrequest/">
+                <a href="/2021/03/13/memoryescape/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="browserrequest">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="memoryescape">
                         
-                        <span class="card-title">browserrequest</span>
+                        <span class="card-title">memoryescape</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            面试题：在浏览器中输入网址按下回车之后发生了什么？原文：https://blog.csdn.net/deltatang/article/details/44779109
-URL解析浏览器解析输入的url确定输入的是一个关键字还是一个完整的h
+                            go语言变量内存分配在go语言中，变量的分配方式主要是有两种，一种在栈上(stack)，另一种是在堆(heap)上
+堆和栈的区别堆（Heap）：一般来讲是人为手动进行管理，手动申请、分配、释放。一般所涉及的内存大小并不定，一般会存放较大的对
                         
                     </div>
                     <div class="publish-info">
@@ -803,12 +753,12 @@ URL解析浏览器解析输入的url确定输入的是一个关键字还是一�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/web/">
-                        <span class="chip bg-color">web</span>
+                    <a href="/tags/go%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">go语言</span>
                     </a>
                     
-                    <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">
-                        <span class="chip bg-color">面试题</span>
+                    <a href="/tags/%E5%86%85%E5%AD%98%E9%80%83%E9%80%B8/">
+                        <span class="chip bg-color">内存逃逸</span>
                     </a>
                     
                 </div>
@@ -822,24 +772,26 @@ URL解析浏览器解析输入的url确定输入的是一个关键字还是一�
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/28/TCP-UDP/">
+                <a href="/2021/02/21/kubernetes/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="TCP/UDP协议">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="kubernetes">
                         
-                        <span class="card-title">TCP/UDP协议</span>
+                        <span class="card-title">kubernetes</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            OSI七层模型OSI（Open System Interconnect），即开放式系统互联。 一般都叫OSI参考模型，是ISO（国际标准化组织）组织在1985年研究的网络互连模型。分为：物理层、数据链路层、网络层、传输层、会话层、表示层、应
+                            kubernetes由来kubernetes是由google开源的一款容器自动化编排工具，可以轻松地管理容器集群。kubernetes在希腊语中是舵手的意思，它的前身是Google的borg系统。
+kubernetes核心功能
+服务发现与负
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-21
                             </span>
                         <span class="publish-author">
                             
@@ -852,16 +804,8 @@ URL解析浏览器解析输入的url确定输入的是一个关键字还是一�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/UDP/">
-                        <span class="chip bg-color">UDP</span>
-                    </a>
-                    
-                    <a href="/tags/TCP/">
-                        <span class="chip bg-color">TCP</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%8D%8F%E8%AE%AE/">
-                        <span class="chip bg-color">协议</span>
+                    <a href="/tags/kubernetes/">
+                        <span class="chip bg-color">kubernetes</span>
                     </a>
                     
                 </div>

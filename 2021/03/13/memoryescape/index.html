@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="kubernetes, goder">
+    <meta name="keywords" content="memoryescape, goder">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>kubernetes | goder</title>
+    <title>memoryescape | goder</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,12 +286,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">kubernetes</h1>
+                    <h1 class="description center-align post-title">memoryescape</h1>
                 </div>
             </div>
         </div>
@@ -408,8 +408,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/kubernetes/">
-                                <span class="chip bg-color">kubernetes</span>
+                            <a href="/tags/go%E8%AF%AD%E8%A8%80/">
+                                <span class="chip bg-color">go语言</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%86%85%E5%AD%98%E9%80%83%E9%80%B8/">
+                                <span class="chip bg-color">内存逃逸</span>
                             </a>
                         
                     </div>
@@ -424,7 +428,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-21
+                    2021-03-13
                 </div>
                 
 
@@ -440,84 +444,61 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="kubernetes由来"><a href="#kubernetes由来" class="headerlink" title="kubernetes由来"></a>kubernetes由来</h4><p>kubernetes是由google开源的一款容器自动化编排工具，可以轻松地管理容器集群。kubernetes在希腊语中是舵手的意思，它的前身是Google的borg系统。</p>
-<h4 id="kubernetes核心功能"><a href="#kubernetes核心功能" class="headerlink" title="kubernetes核心功能"></a>kubernetes核心功能</h4><ol>
-<li><p>服务发现与负载均衡   </p>
-</li>
-<li><p>自动容器恢复</p>
-</li>
-<li><p>存储编排</p>
-</li>
-<li><p>容器自动装箱</p>
-</li>
-<li><p>自动发布与回滚</p>
-</li>
-<li><p>配置与密文管理</p>
-</li>
-<li><p>批量执行</p>
-</li>
-<li><p>水平伸缩<br><img src="/2021/02/21/kubernetes/kubernetes_gongneng.jpg" alt=""></p>
-<h4 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h4><p>kubernetes可以把提交的容器部署到适合的节点上去</p>
-<h4 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h4><p>可以监测集群中的宿主机，当某一个节点无响应时（故障），会自动迁移到一个健康可用的node上去</p>
-<h4 id="水平伸缩"><a href="#水平伸缩" class="headerlink" title="水平伸缩"></a>水平伸缩</h4><p>监测业务上的负载，可以自动对负载高的进行扩容</p>
-<h4 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h4><p>kubernetes是典型的cs结构</p>
-<h5 id="Master节点结构"><a href="#Master节点结构" class="headerlink" title="Master节点结构"></a>Master节点结构</h5></li>
-<li><p>APIServer  :可以水平扩展的一个组件，所有组件都会与APIServer进行连接，进行消息传输，组件之间不相互连接</p>
-</li>
-<li><p>Controller :可以热备的一个组件，只有一个active，完成对集群状态的管理</p>
-</li>
-<li><p>Scheduler  :可以热备的一个组件，只有一个active，完成调度操作</p>
-</li>
-<li><p>ETCD       :分布式存储系统，本身也是高可用的系统，APIServer的元信息就存储在etcd中<br><img src="/2021/02/21/kubernetes/Master.jpg" alt=""></p>
-<h5 id="node"><a href="#node" class="headerlink" title="node"></a>node</h5><p>node是真正执行业务负载的</p>
-</li>
-<li><p>pod  :一个pod中运行着一个或多个容器</p>
-</li>
-<li><p>kublet:运行pod的组件，通过APIServer接收到pod运行状态，提交到Container Runtime</p>
-</li>
-<li><p>Container Runtime：从kublet接收信息，创建容器以及容器需要的环境</p>
-</li>
-<li><p>Storage Plugin:存储操作</p>
-</li>
-<li><p>Network Plugin:网络操作</p>
-</li>
-<li><p>Kube Proxy:完成service组网<br><img src="/2021/02/21/kubernetes/node.jpg" alt=""></p>
-<h4 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h4><h5 id="pod"><a href="#pod" class="headerlink" title="pod"></a>pod</h5></li>
-</ol>
-<ul>
-<li><p>最小的调度以及资源单元</p>
-</li>
-<li><p>由一个或多个容器组成</p>
-</li>
-<li><p>定义容器的运行方式(command、环境变量)</p>
-</li>
-<li><p>提供给容器共享的运行环境(网络、进程空间)</p>
-<h5 id="Volume"><a href="#Volume" class="headerlink" title="Volume"></a>Volume</h5></li>
-<li><p>声明在pod中容器可访问的文件目录</p>
-</li>
-<li><p>可以被挂载在pod中一个或多个容器的指定路径下</p>
-</li>
-<li><p>支持多种后端存储的抽象(本地存储、分布式存储、云存储)</p>
-<h5 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h5></li>
-<li><p>定义一组pod的副本数目、版本等</p>
-</li>
-<li><p>通过控制器(Controller)维持pod的数目(自动恢复失败的pod)</p>
-</li>
-<li><p>通过控制器以指定的策略控制版本(滚动升级、重新生成、回滚等)</p>
-<h5 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h5></li>
-<li><p>提供一个或者多个pod实例的稳定访问地址</p>
-</li>
-<li><p>支持多种访问方式的实现(ClusterIP、NodePort、LoadBalance)</p>
-<h5 id="NameSpaces"><a href="#NameSpaces" class="headerlink" title="NameSpaces"></a>NameSpaces</h5></li>
-<li><p>一个集群内部的逻辑隔离方式(鉴权、资源额度)</p>
-</li>
-<li><p>每个资源都属于一个NameSpace</p>
-</li>
-<li><p>同一个NameSpace中的资源名称唯一</p>
-</li>
-<li><p>不同的NameSpace中的资源名称可重名</p>
-</li>
-</ul>
+                <h4 id="go语言变量内存分配"><a href="#go语言变量内存分配" class="headerlink" title="go语言变量内存分配"></a>go语言变量内存分配</h4><p>在go语言中，变量的分配方式主要是有两种，一种在栈上(stack)，另一种是在堆(heap)上</p>
+<h4 id="堆和栈的区别"><a href="#堆和栈的区别" class="headerlink" title="堆和栈的区别"></a>堆和栈的区别</h4><p>堆（Heap）：一般来讲是人为手动进行管理，手动申请、分配、释放。一般所涉及的内存大小并不定，一般会存放较大的对象。另外其分配相对慢，涉及到的指令动作也相对多。</p>
+<p>栈（Stack）：由编译器进行管理，自动申请、分配、释放。一般不会太大，我们常见的函数参数（不同平台允许存放的数量不同），局部变量等等都会存放在栈上。</p>
+<h4 id="内存逃逸"><a href="#内存逃逸" class="headerlink" title="内存逃逸"></a>内存逃逸</h4><p>什么是逃逸分析<br>在编译程序优化理论中，逃逸分析是一种确定指针动态范围的方法，简单来说就是分析在程序的哪些地方可以访问到该指针。</p>
+<p>通俗地讲，逃逸分析就是确定一个变量要放堆上还是栈上，规则如下：</p>
+<p>是否有在其他地方（非局部）被引用。只要有可能被引用了，那么它一定分配到堆上。否则分配到栈上。</p>
+<p>即使没有被外部引用，但对象过大，无法存放在栈区上。依然有可能分配到堆上。</p>
+<p>对此你可以理解为，逃逸分析是编译器用于决定变量分配到堆上还是栈上的一种行为。</p>
+<h4 id="逃逸时间"><a href="#逃逸时间" class="headerlink" title="逃逸时间"></a>逃逸时间</h4><p>在编译阶段确立逃逸，注意并不是在运行时。</p>
+<h4 id="怎么确定是否逃逸"><a href="#怎么确定是否逃逸" class="headerlink" title="怎么确定是否逃逸"></a>怎么确定是否逃逸</h4><p>第一，通过编译器命令，就可以看到详细的逃逸分析过程。而指令集 -gcflags 用于将标识参数传递给 Go 编译器，涉及如下：</p>
+<p>-m 会打印出逃逸分析的优化策略，实际上最多总共可以用 4 个 -m，但是信息量较大，一般用 1 个就可以了。</p>
+<p>-l 会禁用函数内联，在这里禁用掉 inline 能更好的观察逃逸情况，减少干扰。</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">go</span> build <span class="token operator">-</span>gcflags <span class="token string">"-m -l"</span> main<span class="token punctuation">.</span><span class="token keyword">go</span></code></pre>
+<h4 id="某些函数的使用会导致逃逸"><a href="#某些函数的使用会导致逃逸" class="headerlink" title="某些函数的使用会导致逃逸"></a>某些函数的使用会导致逃逸</h4><p>比如fmt.Print()等，函数的参数需要编译器动态确定类型的，一般会导致逃逸</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> i <span class="token builtin">int</span><span class="token operator">=</span><span class="token number">1</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+
+编译结果<span class="token punctuation">:</span>
+n<span class="token operator">></span><span class="token keyword">go</span> build <span class="token operator">-</span>gcflags <span class="token string">"-m -l"</span> main<span class="token punctuation">.</span><span class="token keyword">go</span>
+# command<span class="token operator">-</span>line<span class="token operator">-</span>arguments
+<span class="token punctuation">.</span>\main<span class="token punctuation">.</span><span class="token keyword">go</span><span class="token punctuation">:</span><span class="token number">25</span><span class="token punctuation">:</span><span class="token number">13</span><span class="token punctuation">:</span> <span class="token operator">...</span> argument does not escape
+<span class="token punctuation">.</span>\main<span class="token punctuation">.</span><span class="token keyword">go</span><span class="token punctuation">:</span><span class="token number">25</span><span class="token punctuation">:</span><span class="token number">13</span><span class="token punctuation">:</span> i escapes to heap
+</code></pre>
+<h4 id="常见情况"><a href="#常见情况" class="headerlink" title="常见情况"></a>常见情况</h4><p>当函数返回内部变量为值类型时,是不会发生逃逸的,返回指针类型会发生逃逸</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token boolean">_</span><span class="token operator">=</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> temp <span class="token builtin">int</span><span class="token operator">=</span><span class="token number">100</span>
+    <span class="token keyword">return</span> temp
+<span class="token punctuation">}</span>
+
+输出结果<span class="token punctuation">:</span>
+<span class="token operator">></span><span class="token keyword">go</span> build <span class="token operator">-</span>gcflags <span class="token string">"-m -l"</span> main<span class="token punctuation">.</span><span class="token keyword">go</span>
+
+<span class="token operator">></span></code></pre>
+<p>为指针类型时:</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token boolean">_</span><span class="token operator">=</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span><span class="token builtin">int</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> temp <span class="token builtin">int</span><span class="token operator">=</span><span class="token number">100</span>
+    <span class="token keyword">return</span> <span class="token operator">&amp;</span>temp
+<span class="token punctuation">}</span>
+
+编译结果<span class="token punctuation">:</span>
+<span class="token operator">></span><span class="token keyword">go</span> build <span class="token operator">-</span>gcflags <span class="token string">"-m -l"</span> main<span class="token punctuation">.</span><span class="token keyword">go</span>
+# command<span class="token operator">-</span>line<span class="token operator">-</span>arguments
+<span class="token punctuation">.</span>\main<span class="token punctuation">.</span><span class="token keyword">go</span><span class="token punctuation">:</span><span class="token number">30</span><span class="token punctuation">:</span><span class="token number">6</span><span class="token punctuation">:</span> moved to heap<span class="token punctuation">:</span> temp</code></pre>
+<h4 id="多级间接赋值容易导致逃逸。"><a href="#多级间接赋值容易导致逃逸。" class="headerlink" title="多级间接赋值容易导致逃逸。"></a>多级间接赋值容易导致逃逸。</h4><p>这里的多级间接指的是，对某个引用类对象中的引用类成员进行赋值。Go 语言中的引用类数据类型有 func, interface, slice, map, chan, *Type(指针)。</p>
+<p>记住公式 Data.Field = Value，如果 Data, Field 都是引用类的数据类型，则会导致 Value 逃逸。这里的等号 = 不单单只赋值，也表示参数传递。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -561,7 +542,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://dylanddyf.github.io/2021/02/21/kubernetes/">https://dylanddyf.github.io/2021/02/21/kubernetes/</a>
+                    <a href="https://dylanddyf.github.io/2021/03/13/memoryescape/">https://dylanddyf.github.io/2021/03/13/memoryescape/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -599,8 +580,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/kubernetes/">
-                                    <span class="chip bg-color">kubernetes</span>
+                                <a href="/tags/go%E8%AF%AD%E8%A8%80/">
+                                    <span class="chip bg-color">go语言</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%86%85%E5%AD%98%E9%80%83%E9%80%B8/">
+                                    <span class="chip bg-color">内存逃逸</span>
                                 </a>
                             
                         </div>
@@ -768,9 +753,61 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/03/13/memoryescape/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="memoryescape">
+                        
+                        <span class="card-title">memoryescape</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            go语言变量内存分配在go语言中，变量的分配方式主要是有两种，一种在栈上(stack)，另一种是在堆(heap)上
+堆和栈的区别堆（Heap）：一般来讲是人为手动进行管理，手动申请、分配、释放。一般所涉及的内存大小并不定，一般会存放较大的对
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            DYL
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/go%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">go语言</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%86%85%E5%AD%98%E9%80%83%E9%80%B8/">
+                        <span class="chip bg-color">内存逃逸</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2021/03/13/browserrequest/">
                     <div class="card-image">
@@ -789,9 +826,9 @@ URL解析浏览器解析输入的url确定输入的是一个关键字还是一�
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -809,59 +846,6 @@ URL解析浏览器解析输入的url确定输入的是一个关键字还是一�
                     
                     <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">
                         <span class="chip bg-color">面试题</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/11/28/TCP-UDP/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="TCP/UDP协议">
-                        
-                        <span class="card-title">TCP/UDP协议</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            OSI七层模型OSI（Open System Interconnect），即开放式系统互联。 一般都叫OSI参考模型，是ISO（国际标准化组织）组织在1985年研究的网络互连模型。分为：物理层、数据链路层、网络层、传输层、会话层、表示层、应
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            DYL
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/UDP/">
-                        <span class="chip bg-color">UDP</span>
-                    </a>
-                    
-                    <a href="/tags/TCP/">
-                        <span class="chip bg-color">TCP</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%8D%8F%E8%AE%AE/">
-                        <span class="chip bg-color">协议</span>
                     </a>
                     
                 </div>
